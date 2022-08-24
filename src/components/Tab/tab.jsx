@@ -1,16 +1,16 @@
 import { useState } from 'react';
-import style from './tag.module.css';
+import style from './tab.module.css';
 
-export default function Tag({ isActive = false, tag }) {
+export default function Tab({ isActive = false, name }) {
     const [active, setActive] = useState(isActive)
-    const className = `${style.tag} ${active ? style.active : style.default}`
+    const className = `${style.tab} ${active ? style.active : style.inactive}`
     const handleClick = (e) => {
         e.preventDefault();
-        setActive(!active)
+        setActive(true)
     }
     return (
         <a href="#" className={className} onClick={handleClick}>
-            {tag}
+            {name}
         </a>
     );
 }

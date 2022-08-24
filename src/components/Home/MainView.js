@@ -3,6 +3,7 @@ import React from "react"
 import agent from "../../agent"
 import { connect } from "react-redux"
 import { CHANGE_TAB } from "../../constants/actionTypes"
+import Tab from "components/Tab/tab"
 
 const YourFeedTab = (props) => {
 	if (props.token) {
@@ -13,9 +14,7 @@ const YourFeedTab = (props) => {
 
 		return (
 			<li className="nav-item">
-				<a href="" className={props.tab === "feed" ? "nav-link active" : "nav-link"} onClick={clickHandler}>
-					Your Feed
-				</a>
+				<Tab onClick={clickHandler} name="Your Feed" />
 			</li>
 		)
 	}
@@ -29,9 +28,7 @@ const GlobalFeedTab = (props) => {
 	}
 	return (
 		<li className="nav-item">
-			<a href="" className={props.tab === "all" ? "nav-link active" : "nav-link"} onClick={clickHandler}>
-				Global Feed
-			</a>
+			<Tab onClick={clickHandler} name="Global Feed" />
 		</li>
 	)
 }

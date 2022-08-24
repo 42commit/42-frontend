@@ -1,0 +1,32 @@
+@import '../../assets/style/global.css';
+
+.tag {
+    display: flex;
+    align-items: center;
+    height: 24px;
+    padding: 0px 8px;
+    width: fit-content;
+    line-height: 16px;
+    border-radius: 100px;
+    color: var(--text-primary-color);
+}
+
+.tag:hover,.tag:active,.tag:visited,.tag:link {
+    text-decoration: none;
+    color: var(--text-primary-color);
+}
+
+.active {
+    background-color: var(--accent-color);
+}
+
+.default {
+    background-color: var(--input-color);
+}
+
+.tags__list {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}

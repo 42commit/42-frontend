@@ -6,7 +6,7 @@ export default function TabList({ onTabClick, tag, tabs, tab }) {
 
     return (
         <ul className={style.list}>
-            {tabs.map(item => <Tab onTabClick={onTabClick} tabName={item.eventKey} name={item.title} key={item.eventKey} tab={tab} />)}
+            {tabs.map(item => <Tab onTabClick={onTabClick} eventKey={item.eventKey} title={item.title} key={item.eventKey} tab={tab} />)}
             <TagFilterTab tag={tag} />
         </ul>
     );

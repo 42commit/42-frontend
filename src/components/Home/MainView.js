@@ -30,12 +30,12 @@ const mapDispatchToProps = (dispatch) => ({
 
 const MainView = (props) => {
 	const tabs = [{
-		name: "Your Feed",
-		tabName: "feed"
+		title: "Your Feed",
+		eventKey: "feed"
 	},
 	{
-		name: "Global Feed",
-		tabName: "all"
+		title: "Global Feed",
+		eventKey: "all"
 	},
 	]
 	return (

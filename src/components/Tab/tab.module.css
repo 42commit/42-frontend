@@ -20,11 +20,6 @@
     color: var(--text-primary-color);
 }
 
-.tab:visited {
-    text-decoration: none;
-    color: var(--text-secondary-color);
-}
-
 .list {
     display: flex;
     padding: 0;

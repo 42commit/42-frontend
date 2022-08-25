@@ -1,0 +1,41 @@
+@import '../../assets/style/global.css';
+
+.pagination {
+display: flex;
+justify-content: center;
+margin: 32px 0;
+}
+
+.page__link {
+}
+
+.active {
+    background-color: var(--accent-color);
+}
+
+.default {
+    border: 1px solid var(--divider-color);
+    background-color: var(--bg-primary-color);
+}
+
+.first {
+    border-radius: 20px 0px 0px 20px;
+}
+
+.last {
+    border-radius: 0px 20px 20px 0px;
+}
+
+.page__link:hover,.page__link:active,.page__link:visited,.page__link:link {
+    text-decoration: none;
+    color: var(--text-primary-color);
+}
+
+.page__item {
+    list-style: none;
+    width: 64px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

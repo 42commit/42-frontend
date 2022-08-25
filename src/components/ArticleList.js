@@ -1,6 +1,6 @@
 import ArticlePreview from "./ArticlePreview"
-import ListPagination from "./ListPagination"
 import React from "react"
+import Pagination from "./Pagination/pagination"
 
 const ArticleList = (props) => {
 	if (!props.articles) return <div className="article-preview">Loading...</div>
@@ -12,8 +12,7 @@ const ArticleList = (props) => {
 			{props.articles.map((article) => {
 				return <ArticlePreview article={article} key={article.slug} />
 			})}
-
-			<ListPagination pager={props.pager} articlesCount={props.articlesCount} currentPage={props.currentPage} />
+			<Pagination pager={props.pager} articlesCount={props.articlesCount} currentPage={props.currentPage} />
 		</div>
 	)
 }

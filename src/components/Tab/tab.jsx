@@ -1,16 +1,27 @@
 import { useState } from 'react';
 import style from './tab.module.css';
+//import { useDispatch } from 'react-redux';
+//import { CHANGE_TAB } from 'constants/actionTypes';
+import agent from 'agent';
 
-export default function Tab({ isActive = false, name, onClick }) {
-    const [active, setActive] = useState(isActive)
+//TODO: менять стиль кнопки в зависимости от статуса (useDispatch)
+
+export default function Tab({ onTabClick, tabName, name, tab }) {
+    //const dispatch = useDispatch();
+    const [active, setActive] = useState(tabName === tab)
     const className = `${style.tab} ${active ? style.active : style.inactive}`
-    const handleClick = (e) => {
-        onClick(e)
-        setActive(true)
+    //console.log("currentTab", currentTab, "tabName", tabName);
+    const clickHandler = (ev) => {
+        ev.preventDefault()
+        onTabClick(tabName, agent.Articles[tabName], agent.Articles[tabName]());
+        //dispatch({ type: CHANGE_TAB, tab })
+        setActive(tabName === tab)
     }
     return (
-        <a href="#" className={className} onClick={handleClick}>
-            {name}
-        </a>
+        <li>
+            <a href="#" className={className} onClick={clickHandler}>
+                {name}
+            </a>
+        </li>
     );
 }

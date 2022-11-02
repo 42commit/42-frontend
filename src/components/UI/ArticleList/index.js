@@ -9,7 +9,7 @@ const ArticleList = (props) => {
 	if (props.articles.length === 0) return <div className={style.main}><Text>Здесь пусто... пока что.</Text></div>
 
 	return (
-		<div>
+		<div className={style.articles}>
 			{props.articles.map((article) => {
 				return <ArticlePreview article={article} key={article.slug} />
 			})}

@@ -13,6 +13,19 @@
 		display: flex;
 		flex-direction: column;
 		gap: 12px;
+		max-height: calc(100vh - 280px);
+		overflow-y: auto;
+		overflow-x: hidden;
+		padding-right: 8px;
+		&::-webkit-scrollbar {
+			width: 8px;
+		}
+		&::-webkit-scrollbar-track {
+			background: #2f2f37;
+		}
+		&::-webkit-scrollbar-thumb {
+			background-color: #8585ad;
+		}
 		.right {
 			display: flex;
 			justify-content: flex-end;

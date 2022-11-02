@@ -62,7 +62,7 @@ class Profile extends React.Component {
 			<>
 				<Banner variant="user" />
 				<div className={style.wrapper}>
-					<div>
+					<div className={style.articles}>
 						<TabList tabs={tabs} />
 						<ArticleList
 							pager={this.props.pager}

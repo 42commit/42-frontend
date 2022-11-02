@@ -1,31 +1,29 @@
-@import '../../../assets/style/global.css';
+@import "../../../assets/style/global.css";
 
 .tag {
-    display: flex;
-    align-items: center;
-    height: 24px;
-    padding: 0px 8px;
-    width: fit-content;
-    border-radius: 100px;
-    color: var(--text-primary-color);
-    cursor: pointer;
-    font-size: 12px;
+	display: flex;
+	align-items: center;
+	padding: 4px 8px;
+	width: fit-content;
+	border-radius: 100px;
+	cursor: pointer;
+	overflow-wrap: anywhere;
 
-    &:hover,
-    &:active,
-    &:visited,
-    &:link {
-        text-decoration: none;
-        color: var(--text-primary-color);
-    }
+	&:hover,
+	&:active,
+	&:visited,
+	&:link {
+		text-decoration: none;
+		color: var(--text-primary-color);
+	}
 }
 
 .default {
-    composes: tag;
-    background-color: var(--input-color);
+	composes: tag;
+	background-color: var(--input-color);
 }
 
 .active {
-    composes: tag;
-    background-color: var(--accent-color);
+	composes: tag;
+	background-color: var(--accent-color);
 }

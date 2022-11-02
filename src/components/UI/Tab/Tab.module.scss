@@ -1,25 +1,27 @@
-@import '../../../assets/style/global.css';
+@import "../../../assets/style/global.css";
 
 .li {
-    display: flex;
-    .tab {
-        background-color: var(--bg-primary-color);
-        padding: 0 24px;
-        border: none;
-        display: flex;
-        align-items: center;
-        text-decoration: none;
-        cursor: pointer;
-        &:hover,
-        &:active {
-            color: var(--text-primary-color);
-        }
-    }
-    .active {
-        color: var(--text-primary-color);
-        box-shadow: inset 0 -2px 0 var(--accent-color);
-    }
-    .inactive {
-        color: var(--text-secondary-color);
-    }
+	display: flex;
+	.tab {
+		background-color: var(--bg-primary-color);
+		padding: 0 24px;
+		border: none;
+		display: flex;
+		align-items: center;
+		text-decoration: none;
+		cursor: pointer;
+		max-width: calc(100vw - 572px);
+		overflow-x: hidden;
+		&:hover,
+		&:active {
+			color: var(--text-primary-color);
+		}
+	}
+	.active {
+		color: var(--text-primary-color);
+		box-shadow: inset 0 -2px 0 var(--accent-color);
+	}
+	.inactive {
+		color: var(--text-secondary-color);
+	}
 }

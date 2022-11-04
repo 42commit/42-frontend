@@ -9,6 +9,11 @@ import style from './ArticlePreview.module.scss'
 import { LikeUnlikeButton } from "../LikeUnlikeButton"
 import { ROUTES } from "constants/routes"
 
+
+const mapStateToProps = (state) => ({
+    currentUser: state.common.currentUser
+})
+
 const mapDispatchToProps = (dispatch) => ({
     favorite: (slug) =>
         dispatch({
@@ -25,8 +30,9 @@ const mapDispatchToProps = (dispatch) => ({
 const ArticlePreview = (props) => {
     const article = props.article
 
-    const handleClick = (ev) => {
+    const handleFavouriteClick = (ev) => {
         ev.preventDefault()
+        if (!props.currentUser) return window.location.replace(ROUTES.LOGIN)
         if (article.favorited) props.unfavorite(article.slug)
         else props.favorite(article.slug)
     }
@@ -40,7 +46,7 @@ const ArticlePreview = (props) => {
                     username={article.author.username}
                     createdAt={article.createdAt}
                 >
-                    <LikeUnlikeButton favorited={article.favorited} onClick={handleClick}>
+                    <LikeUnlikeButton favorited={article.favorited} onClick={handleFavouriteClick}>
                         {article.favoritesCount || ""}
                     </LikeUnlikeButton>
                 </ArticleMeta>
@@ -59,4 +65,4 @@ const ArticlePreview = (props) => {
     )
 }
 
-export default connect(() => ({}), mapDispatchToProps)(ArticlePreview)
+export default connect(mapStateToProps, mapDispatchToProps)(ArticlePreview)

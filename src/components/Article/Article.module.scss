@@ -1,15 +1,8 @@
+@import "../../assets/style/global.scss";
+
 .wrapper {
-	&::-webkit-scrollbar {
-		width: 8px;
-	}
-	&::-webkit-scrollbar-track {
-		background: var(--divider-color);
-	}
-	&::-webkit-scrollbar-thumb {
-		background-color: var(--text-secondary-color);
-	}
+	@include scroll;
 	max-height: calc(100vh - 60px);
-	overflow-y: auto;
 	.main {
 		width: var(--layout-width);
 		max-width: 100vw;

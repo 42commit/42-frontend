@@ -5,6 +5,7 @@ import styles from "./Header.module.scss"
 import { EditIcon, HomeIcon, LoginIcon, SettingsIcon } from "../Icons"
 import { connect } from "react-redux"
 import { Avatar } from "components/Icons/Avatar"
+import { ROUTES } from "constants/routes"
 
 const mapStateToProps = (state) => {
 	const currentUser = state.common.currentUser
@@ -31,10 +32,10 @@ export const LoggedOutView = connect(mapStateToProps)(({ currentUser }) => {
 	if (!currentUser)
 		return (
 			<>
-				<CustomLink to="/" icon={<HomeIcon />}>
+				<CustomLink to={ROUTES.HOME} icon={<HomeIcon />}>
 					Главная
 				</CustomLink>
-				<CustomLink to="/login" icon={<LoginIcon />}>
+				<CustomLink to={ROUTES.LOGIN} icon={<LoginIcon />}>
 					Войти
 				</CustomLink>
 			</>
@@ -47,15 +48,15 @@ const LoggedInView = connect(mapStateToProps)(({ currentUser }) => {
 	if (currentUser)
 		return (
 			<>
-				<CustomLink to="/" icon={<HomeIcon />}>
+				<CustomLink to={ROUTES.HOME} icon={<HomeIcon />}>
 					Главная
 				</CustomLink>
 
-				<CustomLink to="/editor" icon={<EditIcon />}>
+				<CustomLink to={ROUTES.EDITOR} icon={<EditIcon />}>
 					Новая запись
 				</CustomLink>
 
-				<CustomLink to="/settings" icon={<SettingsIcon />}>
+				<CustomLink to={ROUTES.SETTINGS} icon={<SettingsIcon />}>
 					Настройки
 				</CustomLink>
 
@@ -72,7 +73,7 @@ function Header({ appName }) {
 	return (
 		<header className={styles.header}>
 			<div className={styles.container}>
-				<Link className={styles.brand} to="/">
+				<Link className={styles.brand} to={ROUTES.HOME}>
 					<Title type={3} shadow>
 						{appName}
 					</Title>

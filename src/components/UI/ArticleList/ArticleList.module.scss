@@ -1,18 +1,9 @@
+@import "../../../assets/style/global.scss";
+
 .main {
 	margin-top: 32px;
 }
 .articles {
 	max-height: calc(100vh - 460px);
-	overflow-y: auto;
-	overflow-x: hidden;
-	padding-right: 8px;
-	&::-webkit-scrollbar {
-		width: 8px;
-	}
-	&::-webkit-scrollbar-track {
-		background: var(--divider-color);
-	}
-	&::-webkit-scrollbar-thumb {
-		background-color: var(--text-secondary-color);
-	}
+	@include scroll;
 }

@@ -1,3 +1,4 @@
+import { ROUTES } from "constants/routes"
 import {
 	APP_LOAD,
 	REDIRECT,
@@ -35,25 +36,25 @@ export default (state = defaultState, action) => {
 		case REDIRECT:
 			return { ...state, redirectTo: null }
 		case LOGOUT:
-			return { ...state, redirectTo: "/login", token: null, currentUser: null }
+			return { ...state, redirectTo: ROUTES.LOGIN, token: null, currentUser: null }
 		case ARTICLE_SUBMITTED:
-			return { ...state, redirectTo: `/article/${action.payload.article.slug}` }
+			return { ...state, redirectTo: `${ROUTES.ARTICLE_DEFAULT}${action.payload.article.slug}` }
 		case SETTINGS_SAVED:
 			return {
 				...state,
-				redirectTo: action.error ? null : "/",
+				redirectTo: action.error ? null : ROUTES.HOME,
 				currentUser: action.error ? null : action.payload.user,
 			}
 		case LOGIN:
 		case REGISTER:
 			return {
 				...state,
-				redirectTo: action.error ? null : "/",
+				redirectTo: action.error ? null : ROUTES.HOME,
 				token: action.error ? null : action.payload.user.token,
 				currentUser: action.error ? null : action.payload.user,
 			}
 		case DELETE_ARTICLE:
-			return { ...state, redirectTo: "/" }
+			return { ...state, redirectTo: ROUTES.HOME }
 		case ARTICLE_PAGE_UNLOADED:
 		case EDITOR_PAGE_UNLOADED:
 		case HOME_PAGE_UNLOADED:

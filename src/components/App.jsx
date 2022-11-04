@@ -16,6 +16,7 @@ import { push } from "react-router-redux"
 import { Loader } from "./UI/Loader"
 import NotFound from "./NotFound"
 import ProfileFavorites from "./Profile/ProfileFavorites"
+import { ROUTES } from "constants/routes"
 
 const mapStateToProps = (state) => {
 	return {
@@ -54,15 +55,15 @@ const App = ({ onLoad, appLoaded, onRedirect, dispatch, redirectTo, pushRedirect
 			<>
 				<Header />
 				<Switch>
-					<Route exact path="/" component={Home} />
-					<Route path="/login" component={Login} />
-					<Route path="/register" component={Register} />
-					<Route path="/editor/:slug" component={Editor} />
-					<Route path="/editor" component={Editor} />
-					<Route path="/article/:id" component={Article} />
-					<Route path="/settings" component={Settings} />
-					<Route path="/@:username/favorites" component={ProfileFavorites} />
-					<Route path="/@:username" component={Profile} />
+					<Route exact path={ROUTES.HOME} component={Home} />
+					<Route path={ROUTES.LOGIN} component={Login} />
+					<Route path={ROUTES.REGISTER} component={Register} />
+					<Route path={ROUTES.SLUG} component={Editor} />
+					<Route path={ROUTES.EDITOR} component={Editor} />
+					<Route path={ROUTES.ARTICLE} component={Article} />
+					<Route path={ROUTES.SETTINGS} component={Settings} />
+					<Route path={ROUTES.FAVORITES} component={ProfileFavorites} />
+					<Route path={ROUTES.PROFILE} component={Profile} />
 					<Route component={NotFound} />
 				</Switch>
 			</>

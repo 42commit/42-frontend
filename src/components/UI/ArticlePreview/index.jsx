@@ -7,6 +7,7 @@ import { TagsList, Title, Text, Button } from ".."
 import { ArticleMeta } from "../ArticleMeta"
 import style from './ArticlePreview.module.scss'
 import { LikeUnlikeButton } from "../LikeUnlikeButton"
+import { ROUTES } from "constants/routes"
 
 const mapDispatchToProps = (dispatch) => ({
     favorite: (slug) =>
@@ -48,7 +49,7 @@ const ArticlePreview = (props) => {
                     <Text color="secondary">{article.description}</Text>
                 </div>
                 <div className={style.footer}>
-                    <Link to={`/article/${article.slug}`} className={style.link}>
+                    <Link to={`${ROUTES.ARTICLE_DEFAULT}${article.slug}`} className={style.link}>
                         <Button type="link">Read more</Button>
                     </Link>
                     <TagsList tags={article.tagList} />

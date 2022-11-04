@@ -72,8 +72,6 @@ const EditorComponent = (props) => {
 		const promise = articleSlug
 			? agent.Articles.update({ ...article, slug: articleSlug })
 			: agent.Articles.create(article)
-		console.log(promise)
-
 		onSubmit(promise)
 	}
 

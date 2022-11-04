@@ -6,6 +6,7 @@ import { Banner } from "components/Banner"
 import { Sidebar, TabList, TagsList } from "components/UI"
 import style from "./Profile.module.scss"
 import ArticleList from "components/UI/ArticleList"
+import { ROUTES } from "constants/routes"
 
 const mapStateToProps = (state) => ({
 	...state.articleList,
@@ -61,7 +62,7 @@ const ProfileFavorites = ({
 		},
 		{
 			title: "Любимые посты",
-			route: `/@${profile.username}/favorites`,
+			route: `/@${profile.username}${ROUTES.FAVORITES_DEFAULT}`,
 		},
 	]
 

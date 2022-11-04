@@ -1,3 +1,5 @@
+@import "../../../assets/style/global.scss";
+
 .form {
 	display: flex;
 	flex-direction: column;
@@ -7,22 +9,11 @@
 		margin-top: 4px;
 	}
 	.inputs {
+		@include scroll;
 		display: flex;
 		flex-direction: column;
 		gap: 12px;
-		overflow-y: auto;
-		overflow-x: hidden;
 		max-height: calc(100vh - 420px);
-		padding-right: 8px;
-		&::-webkit-scrollbar {
-			width: 8px;
-		}
-		&::-webkit-scrollbar-track {
-			background: var(--divider-color);
-		}
-		&::-webkit-scrollbar-thumb {
-			background-color: var(--text-secondary-color);
-		}
 	}
 	.errors {
 		min-height: 24px;

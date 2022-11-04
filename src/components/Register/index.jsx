@@ -5,6 +5,7 @@ import { UPDATE_FIELD_AUTH, REGISTER, REGISTER_PAGE_UNLOADED } from "../../const
 import { Input } from "../UI/Input"
 import { FormWrapper } from "components/UI/FormWrapper"
 import { Form } from "components/UI/Form"
+import { ROUTES } from "constants/routes"
 
 const mapStateToProps = (state) => ({ ...state.auth })
 
@@ -36,7 +37,7 @@ const Register = ({ onSubmit, onUnload, errors, inProgress }) => {
 	}
 
 	return (
-		<FormWrapper title='Зарегистрироваться' link='/login' linkName='Уже есть аккаунт?'>
+		<FormWrapper title='Зарегистрироваться' link={ROUTES.LOGIN} linkName='Уже есть аккаунт?'>
 			<Form button='Зарегистрироваться' onSubmit={submitForm(values.username, values.email, values.password)} disabled={inProgress} errors={errors}>
 				<Input
 					name="username"

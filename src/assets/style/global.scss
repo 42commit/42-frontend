@@ -18,6 +18,19 @@
 	--layout-width: 1140px;
 }
 
+@mixin scroll {
+	overflow-y: auto;
+	&::-webkit-scrollbar {
+		width: 8px;
+	}
+	&::-webkit-scrollbar-track {
+		background: var(--divider-color);
+	}
+	&::-webkit-scrollbar-thumb {
+		background-color: var(--text-secondary-color);
+	}
+}
+
 * {
 	font-family: "JetBrains Mono";
 }

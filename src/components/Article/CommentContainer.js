@@ -5,6 +5,7 @@ import React from "react"
 import style from "./Article.module.scss"
 import { Button, Text, Title } from "components/UI"
 import ListErrors from "components/UI/ListErrors"
+import { ROUTES } from "constants/routes"
 
 const CommentContainer = (props) => {
 	if (props.currentUser)
@@ -22,9 +23,9 @@ const CommentContainer = (props) => {
 		return (
 			<div>
 				<div className={style.message}>
-					<Button type='link'><Link to="/login">Войдите</Link></Button>
+					<Button type='link'><Link to={ROUTES.LOGIN}>Войдите</Link></Button>
 					<Text>&nbsp;или&nbsp;</Text>
-					<Button type='link'><Link to="/register">зарегистрируйтесь</Link></Button>
+					<Button type='link'><Link to={ROUTES.REGISTER}>зарегистрируйтесь</Link></Button>
 					<Text>, чтобы оставить комментарий.</Text>
 				</div>
 				<CommentList comments={props.comments} slug={props.slug} currentUser={props.currentUser} />

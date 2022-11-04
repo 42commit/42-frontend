@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 import { APPLY_TAG_FILTER, PROFILE_PAGE_LOADED, PROFILE_PAGE_UNLOADED } from "constants/actionTypes"
 import agent from "agent"
 import { Banner } from "components/Banner"
-import { Sidebar, TabList, TagsList } from "components/UI"
+import { Pagination, Sidebar, TabList, TagsList } from "components/UI"
 import style from "./Profile.module.scss"
 import ArticleList from "components/UI/ArticleList"
 import { ROUTES } from "constants/routes"
@@ -81,6 +81,9 @@ const ProfileFavorites = ({
 		},
 		[articles],
 	)
+
+	const getPaginationRequestFavoritedBy = (username) => (page) => agent.Articles.favoritedBy(username, page)
+
 	return (
 		<>
 			<Banner variant="user" />
@@ -98,6 +101,7 @@ const ProfileFavorites = ({
 					<TagsList tags={getUserTag} onClickTag={clickTagHandler} />
 				</Sidebar>
 			</div>
+			<Pagination request={getPaginationRequestFavoritedBy(profile.username)}/>
 		</>
 	)
 }

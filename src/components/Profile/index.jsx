@@ -9,7 +9,7 @@ import {
 	PROFILE_PAGE_UNLOADED,
 	APPLY_TAG_FILTER,
 } from "../../constants/actionTypes"
-import { Sidebar, TabList, TagsList } from "../UI"
+import { Pagination, Sidebar, TabList, TagsList } from "../UI"
 import { Banner } from "../Banner"
 import style from "./Profile.module.scss"
 
@@ -44,9 +44,8 @@ const Profile = ({
 	articlesCount,
 	currentPage,
 	match,
-	pagerm,
-	onClickTag,
 	pager,
+	onClickTag,
 }) => {
 	const [selectedTag, setSelectedTag] = useState(null)
 	useEffect(() => {
@@ -98,6 +97,7 @@ const Profile = ({
 		},
 	]
 
+	const getPaginationRequestByAuthor = (username) => (page) => agent.Articles.byAuthor(username, page)
 
 	return (
 		<>
@@ -116,6 +116,7 @@ const Profile = ({
 					<TagsList tags={getUserTag} onClickTag={clickTagHandler} />
 				</Sidebar>
 			</div>
+			<Pagination request={getPaginationRequestByAuthor(profile.username)}/>
 		</>
 	)
 }

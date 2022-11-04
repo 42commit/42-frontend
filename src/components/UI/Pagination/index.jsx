@@ -16,9 +16,10 @@ const mapDispatchToProps = (dispatch) => ({
 	onSetPage: (page, payload) => dispatch({ type: SET_PAGE, page, payload }),
 })
 
-const PaginationComponent = ({ articleList, onSetPage }) => {
+const PaginationComponent = ({ articleList, onSetPage, request = agent.Articles.all }) => {
 	if (!articleList.articlesCount) return null
-	const { articlesCount, currentPage, pager } = articleList
+	const { articlesCount, currentPage, pager, tab } = articleList
+	if (tab === 'feed') return null
 	if (articlesCount <= 10) return null
 	const range = []
 	for (let i = 0; i < Math.ceil(articlesCount / 10); ++i) range.push(i)
@@ -36,7 +37,7 @@ const PaginationComponent = ({ articleList, onSetPage }) => {
 	const setPage = (page) => {
 		console.log(pager)
 		if (pager) onSetPage(page, pager(page))
-		else onSetPage(page, agent.Articles.all(page))
+		else onSetPage(page, request(page))
 	}
 
 	const onPrevClick = (ev) => {

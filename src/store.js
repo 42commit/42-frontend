@@ -13,6 +13,7 @@ export const history = createBrowserHistory()
 const myRouterMiddleware = routerMiddleware(history)
 
 const getMiddleware = () => {
+	// eslint-disable-next-line no-undef
 	if (process.env.NODE_ENV === "production")
 		return applyMiddleware(myRouterMiddleware, promiseMiddleware, localStorageMiddleware)
 	// Enable additional logging in non-production environments.

@@ -97,6 +97,7 @@ const Profile = ({
 		},
 	]
 
+	const getPaginationRequestByAuthor = (username) => (page) => agent.Articles.byAuthor(username, page)
 
 	return (
 		<>
@@ -115,7 +116,7 @@ const Profile = ({
 					<TagsList tags={getUserTag} onClickTag={clickTagHandler} />
 				</Sidebar>
 			</div>
-			<Pagination />
+			<Pagination request={getPaginationRequestByAuthor(profile.username)}/>
 		</>
 	)
 }

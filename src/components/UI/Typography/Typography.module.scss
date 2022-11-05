@@ -8,7 +8,9 @@ p {
 	font-weight: 700;
 	font-size: 64px;
 	line-height: 64px;
-	text-align: center;
+	@media screen and (max-width: 360px) {
+		font-size: 56px;
+	}
 }
 
 .header2 {

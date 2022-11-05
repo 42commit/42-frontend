@@ -8,11 +8,12 @@
 		align-items: center;
 		text-decoration: none;
 		cursor: pointer;
-		max-width: calc(100vw - 572px);
-		overflow-x: hidden;
 		&:hover,
 		&:active {
 			color: var(--text-primary-color);
+		}
+		@media screen and (max-width: 768px) {
+			text-align: center;
 		}
 	}
 	.active {

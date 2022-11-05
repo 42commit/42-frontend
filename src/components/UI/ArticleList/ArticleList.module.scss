@@ -4,6 +4,9 @@
 	margin-top: 32px;
 }
 .articles {
-	max-height: calc(100vh - 460px);
+	max-height: calc(100vh - 540px);
 	@include scroll;
+	@media screen and (max-width: 768px) {
+		max-height: unset;
+	}
 }

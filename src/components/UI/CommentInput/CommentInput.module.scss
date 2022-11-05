@@ -1,17 +1,23 @@
 .card {
-    border-radius: 20px;
-    background-color: var(--input-color);
+	border-radius: 20px;
+	background-color: var(--input-color);
 }
 
 .top {
-    padding: 24px;
+	padding: 24px;
+	@media screen and (max-width: 768px) {
+		padding: 16px;
+	}
 }
 
 .footer {
-    padding: 24px;
-    background-color: var(--bg-secondary-color);
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    display: flex;
-    gap: 8px;
+	padding: 24px;
+	background-color: var(--bg-secondary-color);
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+	display: flex;
+	gap: 8px;
+	@media screen and (max-width: 768px) {
+		padding: 16px;
+	}
 }

@@ -21,7 +21,7 @@ const CommentContainer = (props) => {
 		)
 	else
 		return (
-			<div>
+			<>
 				<div className={style.message}>
 					<Button type='link'><Link to={ROUTES.LOGIN}>Войдите</Link></Button>
 					<Text>&nbsp;или&nbsp;</Text>
@@ -29,7 +29,7 @@ const CommentContainer = (props) => {
 					<Text>, чтобы оставить комментарий.</Text>
 				</div>
 				<CommentList comments={props.comments} slug={props.slug} currentUser={props.currentUser} />
-			</div>
+			</>
 		)
 }
 

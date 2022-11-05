@@ -13,9 +13,7 @@ export function ArticleMeta({ image, username, createdAt, children }) {
                 </Link>
                 <AuthorDate username={username} createdAt={createdAt} />
             </div>
-            <div className={style.right}>
-                {children}
-            </div>
+            {children}
         </div>
     )
 }

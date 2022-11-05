@@ -33,9 +33,8 @@ const PaginationComponent = ({ articleList, onSetPage, request = agent.Articles.
 			range.length < 7 || currentPage > range.length - 4 ? range.length - 1 : currentPage < 4 ? 6 : currentPage + 3,
 		[currentPage, range],
 	)
-	
+
 	const setPage = (page) => {
-		console.log(pager)
 		if (pager) onSetPage(page, pager(page))
 		else onSetPage(page, request(page))
 	}
@@ -51,7 +50,7 @@ const PaginationComponent = ({ articleList, onSetPage, request = agent.Articles.
 	}
 	return (
 		<ul className={style.pagination}>
-		{/* <PageLink
+			{/* <PageLink
 			isCurrent={currentPage === 0}
 			onClick={(ev) => {
 				ev.preventDefault()

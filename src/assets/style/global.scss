@@ -33,13 +33,13 @@
 
 * {
 	font-family: "JetBrains Mono";
+	overflow-x: hidden;
 }
 
 body {
 	background-color: var(--bg-primary-color);
 }
 
-/* Указываем box sizing */
 *,
 *::before,
 *::after {

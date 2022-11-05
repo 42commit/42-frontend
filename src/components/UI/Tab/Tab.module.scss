@@ -1,12 +1,19 @@
 .li {
 	display: flex;
 	.tab {
+		box-sizing: border-box;
 		background-color: var(--bg-primary-color);
 		padding: 0 24px;
 		border: none;
 		display: flex;
 		align-items: center;
 		text-decoration: none;
+		max-width: 30vw;
+		overflow-x: scroll !important;
+		&::-webkit-scrollbar {
+			display: none;
+		}
+		
 		cursor: pointer;
 		&:hover,
 		&:active {

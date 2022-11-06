@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react"
-import agent from "../../agent"
+import agent from "agent"
 import { connect } from "react-redux"
-import { UPDATE_FIELD_AUTH, LOGIN, LOGIN_PAGE_UNLOADED } from "../../constants/actionTypes"
+import { UPDATE_FIELD_AUTH, LOGIN, LOGIN_PAGE_UNLOADED } from "constants/actionTypes"
 import { Input } from "../UI/Input"
-import { FormWrapper } from "components/UI/FormWrapper"
-import { Form } from "components/UI/Form"
+import FormWrapper from "components/UI/FormWrapper"
+import Form from "components/UI/Form"
+import PropTypes from "prop-types"
 
 const mapStateToProps = (state) => ({ ...state.auth })
 
@@ -60,3 +61,10 @@ const Login = ({ onSubmit, onUnload, errors, inProgress }) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)
+
+Login.propTypes = {
+	onSubmit: PropTypes.func.isRequired,
+	onUnload: PropTypes.func.isRequired,
+	errors: PropTypes.object,
+	inProgress: PropTypes.bool,
+}

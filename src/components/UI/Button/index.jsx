@@ -13,7 +13,8 @@ export const Button = ({ type = "primary", htmlType = "button", onClick, childre
 
 Button.propTypes = {
 	type: PropTypes.oneOf(['primary', 'light', 'link', "delete"]),
+	htmlType: PropTypes.oneOf(['button', 'submit']),
 	onClick: PropTypes.func,
-	children: PropTypes.any,
+	children: PropTypes.any.isRequired,
 	disabled: PropTypes.bool,
 }

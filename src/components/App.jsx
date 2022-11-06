@@ -11,12 +11,12 @@ import Login from "./Login"
 import Profile from "../components/Profile"
 import Register from "./Register"
 import Settings from "../components/Settings"
-import { store } from "../store"
 import { push } from "react-router-redux"
 import { Loader } from "./UI/Loader"
 import NotFound from "./NotFound"
 import ProfileFavorites from "./Profile/ProfileFavorites"
 import { ROUTES } from "constants/routes"
+import PropTypes from "prop-types"
 
 const mapStateToProps = (state) => {
 	return {
@@ -34,7 +34,7 @@ const mapDispatchToProps = (dispatch) => ({
 	pushRedirect: (payload) => dispatch(push(payload)),
 })
 
-const App = ({ onLoad, appLoaded, onRedirect, dispatch, redirectTo, pushRedirect }) => {
+const App = ({ onLoad, appLoaded, onRedirect, redirectTo, pushRedirect }) => {
 	useEffect(() => {
 		const token = window.localStorage.getItem("jwt")
 		if (token) agent.setToken(token)
@@ -44,11 +44,10 @@ const App = ({ onLoad, appLoaded, onRedirect, dispatch, redirectTo, pushRedirect
 
 	useEffect(() => {
 		if (redirectTo) {
-			// this.context.router.replace(nextProps.redirectTo);
 			pushRedirect(redirectTo)
 			onRedirect()
 		}
-	}, [redirectTo, dispatch])
+	}, [redirectTo])
 
 	if (appLoaded)
 		return (
@@ -73,3 +72,11 @@ const App = ({ onLoad, appLoaded, onRedirect, dispatch, redirectTo, pushRedirect
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)
+
+App.propTypes = {
+	onRedirect: PropTypes.func.isRequired,
+	onUnload: PropTypes.func,
+	redirectTo: PropTypes.string,
+	appLoaded: PropTypes.bool,
+	pushRedirect: PropTypes.func.isRequired,
+}

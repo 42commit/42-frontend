@@ -1,12 +1,14 @@
 import CommentContainer from "./CommentContainer"
 import React, { useEffect } from "react"
-import agent from "../../agent"
+import agent from "agent"
 import { connect } from "react-redux"
 import marked from "marked"
-import { ARTICLE_PAGE_LOADED, ARTICLE_PAGE_UNLOADED } from "../../constants/actionTypes"
-import { TagsList, Text, Title } from "components/UI"
-import { Banner } from "components/Banner"
+import { ARTICLE_PAGE_LOADED, ARTICLE_PAGE_UNLOADED } from "constants/actionTypes"
+import { TagsList, Title } from "components/UI"
+import Banner from "components/Banner"
 import style from "./Article.module.scss"
+import PropTypes from "prop-types"
+import { article, comment, user } from "constants/types"
 
 const mapStateToProps = (state) => ({
 	...state.article,
@@ -53,3 +55,12 @@ export const Article = ({ onLoad, onUnload, article, currentUser, comments, comm
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Article)
+
+Article.propTypes = {
+	onLoad: PropTypes.func.isRequired,
+	onUnload: PropTypes.func.isRequired,
+	currentUser: user,
+	comments: PropTypes.arrayOf(comment.isRequired),
+	article: article,
+	commentErrors: PropTypes.object
+}

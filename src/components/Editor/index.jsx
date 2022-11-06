@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import agent from "../../agent"
+import agent from "agent"
 import { connect } from "react-redux"
 import {
 	ADD_TAG,
@@ -8,12 +8,13 @@ import {
 	ARTICLE_SUBMITTED,
 	EDITOR_PAGE_UNLOADED,
 	UPDATE_FIELD_EDITOR,
-} from "../../constants/actionTypes"
+} from "constants/actionTypes"
 import { Input } from "../UI/Input"
 import styles from "./Editor.module.scss"
 import { Tag } from "components/UI"
-import { FormWrapper } from "components/UI/FormWrapper"
-import { Form } from "components/UI/Form"
+import FormWrapper from "components/UI/FormWrapper"
+import Form from "components/UI/Form"
+import PropTypes from "prop-types"
 
 const mapStateToProps = (state) => ({
 	...state.editor,
@@ -29,25 +30,25 @@ const mapDispatchToProps = (dispatch) => ({
 	onUpdateField: (key, value) => dispatch({ type: UPDATE_FIELD_EDITOR, key, value }),
 })
 
-const EditorComponent = (props) => {
-	if (!props.appLoaded) return null
-	const {
-		onUpdateField,
-		onUnload,
-		onSubmit,
-		onRemoveTag,
-		onLoad,
-		onAddTag,
-		body,
-		description,
-		tagInput,
-		tagList,
-		title,
-		errors,
-		inProgress,
-		match,
-		articleSlug,
-	} = props
+const EditorComponent = ({
+	onUpdateField,
+	onUnload,
+	onSubmit,
+	onRemoveTag,
+	onLoad,
+	onAddTag,
+	body,
+	description,
+	tagInput,
+	tagList,
+	title,
+	errors,
+	inProgress,
+	match,
+	articleSlug,
+	appLoaded
+}) => {
+	if (!appLoaded) return null
 
 	const changeHandler = (e) => {
 		onUpdateField(e.target.name, e.target.value)
@@ -76,7 +77,7 @@ const EditorComponent = (props) => {
 	}
 
 	useEffect(() => {
-		match.params.slug ? onLoad(agent.Articles.get(match.params.slug)) : onLoad(null)
+		onLoad(agent.Articles.get(match.params.slug))
 		return () => {
 			onUnload()
 		}
@@ -134,3 +135,22 @@ const EditorComponent = (props) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditorComponent)
+
+EditorComponent.propTypes = {
+	onUpdateField: PropTypes.func.isRequired,
+	onUnload: PropTypes.func.isRequired,
+	onSubmit: PropTypes.func.isRequired,
+	onRemoveTag: PropTypes.func.isRequired,
+	onLoad: PropTypes.func.isRequired,
+	onAddTag: PropTypes.func.isRequired,
+	body: PropTypes.string,
+	description: PropTypes.string,
+	tagInput: PropTypes.string,
+	tagList: PropTypes.arrayOf(PropTypes.string.isRequired),
+	title: PropTypes.string,
+	errors: PropTypes.object,
+	inProgress: PropTypes.bool,
+	match: PropTypes.object.isRequired,
+	articleSlug: PropTypes.string,
+	appLoaded: PropTypes.bool.isRequired
+}

@@ -18,7 +18,8 @@ const TabListComponent = ({ tabs, tag, tagsOff = false }) => {
 
 export const TabList = connect(mapStateToProps)(TabListComponent)
 
-// Tab.propTypes = {
-//     tabs: PropTypes.array,
-//     tag: PropTypes.string
-// };
+TabListComponent.propTypes = {
+	tabs: PropTypes.array.isRequired,
+	tag: PropTypes.string,
+	tagsOff: PropTypes.bool
+};

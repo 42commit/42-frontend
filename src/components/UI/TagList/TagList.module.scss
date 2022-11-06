@@ -1,6 +1,7 @@
-@import "../../../assets/style/global.scss";
+@import "../../../assets/style/global";
 
 .tags__list {
+	align-self: end;
 	display: flex;
 	gap: 4px;
 	flex-wrap: wrap;

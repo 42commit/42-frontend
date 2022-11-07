@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react"
-import agent from "../../agent"
+import agent from "agent"
 import { connect } from "react-redux"
-import { SETTINGS_SAVED, SETTINGS_PAGE_UNLOADED, LOGOUT } from "../../constants/actionTypes"
+import { SETTINGS_SAVED, SETTINGS_PAGE_UNLOADED, LOGOUT } from "constants/actionTypes"
 import { Input } from "../UI/Input"
 import { Button } from "../UI"
 import styles from "./Settings.module.scss"
-import { FormWrapper } from "components/UI/FormWrapper"
-import { Form } from "components/UI/Form"
+import FormWrapper from "components/UI/FormWrapper"
+import Form from "components/UI/Form"
 import { AvatarChanger } from "components/UI/AvatarChanger"
+import PropTypes from "prop-types"
+import { user } from "constants/types"
 
 const mapStateToProps = (state) => ({
 	...state.settings,
@@ -63,7 +65,6 @@ const Settings = ({ onSubmitForm, inProgress, currentUser, errors, onClickLogout
 	}
 	return (
 		<div className={styles.wrapper}>
-
 			<FormWrapper title='Ваши настройки'>
 				<Form button='Сохранить' onSubmit={submitFormHandler} disabled={inProgress} errors={errors}>
 					<AvatarChanger avatar={values.image} setAvatar={setAvatar} />
@@ -110,3 +111,12 @@ const Settings = ({ onSubmitForm, inProgress, currentUser, errors, onClickLogout
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Settings)
+
+Settings.propTypes = {
+	onSubmitForm: PropTypes.func.isRequired,
+	onUnload: PropTypes.func.isRequired,
+	onClickLogout: PropTypes.func.isRequired,
+	currentUser: user,
+	inProgress: PropTypes.bool,
+	errors: PropTypes.object,
+}

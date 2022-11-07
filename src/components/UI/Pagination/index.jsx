@@ -1,12 +1,12 @@
 import React, { useMemo } from "react"
-import agent from "../../../agent"
+import agent from "agent"
 import { connect } from "react-redux"
 import { SET_PAGE } from "constants/actionTypes"
 import style from "./Pagination.module.scss"
 import { ArrowIcon } from "components/Icons"
 import PropTypes from "prop-types"
 import { PageLink } from "../PageLink"
-
+import { article } from "constants/types"
 
 const mapStateToProps = (state) => ({
 	articleList: state.articleList,
@@ -33,9 +33,8 @@ const PaginationComponent = ({ articleList, onSetPage, request = agent.Articles.
 			range.length < 7 || currentPage > range.length - 4 ? range.length - 1 : currentPage < 4 ? 6 : currentPage + 3,
 		[currentPage, range],
 	)
-	
+
 	const setPage = (page) => {
-		console.log(pager)
 		if (pager) onSetPage(page, pager(page))
 		else onSetPage(page, request(page))
 	}
@@ -51,7 +50,7 @@ const PaginationComponent = ({ articleList, onSetPage, request = agent.Articles.
 	}
 	return (
 		<ul className={style.pagination}>
-		{/* <PageLink
+			{/* <PageLink
 			isCurrent={currentPage === 0}
 			onClick={(ev) => {
 				ev.preventDefault()
@@ -96,3 +95,9 @@ const PaginationComponent = ({ articleList, onSetPage, request = agent.Articles.
 }
 
 export const Pagination = connect(mapStateToProps, mapDispatchToProps)(PaginationComponent)
+
+PageLink.propTypes = {
+	articleList: PropTypes.arrayOf(article.isRequired),
+	onSetPage: PropTypes.func,
+	request: PropTypes.func
+}

@@ -6,6 +6,8 @@ import { EditIcon, HomeIcon, LoginIcon, SettingsIcon } from "../Icons"
 import { connect } from "react-redux"
 import { Avatar } from "components/Icons/Avatar"
 import { ROUTES } from "constants/routes"
+import PropTypes from "prop-types"
+import { user } from "constants/types"
 
 const mapStateToProps = (state) => {
 	const currentUser = state.common.currentUser
@@ -28,48 +30,42 @@ const CustomLink = connect(mapStateToProps)(({ to, children, icon, pathname }) =
 	)
 })
 
-export const LoggedOutView = connect(mapStateToProps)(({ currentUser }) => {
-	if (!currentUser)
-		return (
-			<>
-				<CustomLink to={ROUTES.HOME} icon={<HomeIcon />}>
-					Главная
-				</CustomLink>
-				<CustomLink to={ROUTES.LOGIN} icon={<LoginIcon />}>
-					Войти
-				</CustomLink>
-			</>
-		)
-
-	return null
-})
+const LoggedOutView = () => {
+	return (
+		<>
+			<CustomLink to={ROUTES.HOME} icon={<HomeIcon />}>
+				Главная
+			</CustomLink>
+			<CustomLink to={ROUTES.LOGIN} icon={<LoginIcon />}>
+				Войти
+			</CustomLink>
+		</>
+	)
+}
 
 const LoggedInView = connect(mapStateToProps)(({ currentUser }) => {
-	if (currentUser)
-		return (
-			<>
-				<CustomLink to={ROUTES.HOME} icon={<HomeIcon />}>
-					Главная
-				</CustomLink>
+	return (
+		<>
+			<CustomLink to={ROUTES.HOME} icon={<HomeIcon />}>
+				Главная
+			</CustomLink>
 
-				<CustomLink to={ROUTES.EDITOR} icon={<EditIcon />}>
-					Новая запись
-				</CustomLink>
+			<CustomLink to={ROUTES.EDITOR} icon={<EditIcon />}>
+				Новая запись
+			</CustomLink>
 
-				<CustomLink to={ROUTES.SETTINGS} icon={<SettingsIcon />}>
-					Настройки
-				</CustomLink>
+			<CustomLink to={ROUTES.SETTINGS} icon={<SettingsIcon />}>
+				Настройки
+			</CustomLink>
 
-				<CustomLink to={`/@${currentUser.username}`} icon={<Avatar type={currentUser.image} size="small" />}>
-					{currentUser.username}
-				</CustomLink>
-			</>
-		)
-
-	return null
+			<CustomLink to={`/@${currentUser.username}`} icon={<Avatar type={currentUser.image} size="small" />}>
+				{currentUser.username}
+			</CustomLink>
+		</>
+	)
 })
 
-function Header({ appName }) {
+const Header = ({ appName, currentUser }) => {
 	return (
 		<header className={styles.header}>
 			<div className={styles.container}>
@@ -79,8 +75,7 @@ function Header({ appName }) {
 					</Title>
 				</Link>
 				<div className={styles.navLinks}>
-					<LoggedOutView />
-					<LoggedInView />
+					{currentUser ? <LoggedInView /> : <LoggedOutView />}
 				</div>
 			</div>
 		</header>
@@ -88,3 +83,19 @@ function Header({ appName }) {
 }
 
 export default connect(mapStateToProps)(Header)
+
+CustomLink.propTypes = {
+	to: PropTypes.string.isRequired,
+	pathname: PropTypes.string,
+	icon: PropTypes.element.isRequired,
+	children: PropTypes.string.isRequired,
+}
+
+LoggedInView.propTypes = {
+	currentUser: user
+}
+
+Header.propTypes = {
+	currentUser: user,
+	appName: PropTypes.string.isRequired,
+}

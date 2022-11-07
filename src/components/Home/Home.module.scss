@@ -5,4 +5,8 @@
 	padding: 32px 16px;
 	width: var(--layout-width);
 	max-width: 100%;
+	height: fit-content;
+	@media screen and (max-width: 768px) {
+		flex-direction: column-reverse;
+	}
 }

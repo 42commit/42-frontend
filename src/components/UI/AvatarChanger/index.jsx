@@ -1,6 +1,7 @@
 import { Avatar } from "components/Icons/Avatar"
 import React, { useState } from "react"
 import styles from "./AvatarChanger.module.scss"
+import PropTypes from 'prop-types'
 
 export const AvatarChanger = ({ avatar = "smile", setAvatar }) => {
 	const [visible, setVisible] = useState(false)
@@ -28,4 +29,9 @@ export const AvatarChanger = ({ avatar = "smile", setAvatar }) => {
 			</ul>}
 		</div>
 	)
+}
+
+AvatarChanger.propTypes = {
+	avatar: PropTypes.string.isRequired,
+	setAvatar: PropTypes.func.isRequired,
 }

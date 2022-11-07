@@ -2,11 +2,13 @@ import React, { useCallback, useEffect, useMemo, useState } from "react"
 import { connect } from "react-redux"
 import { APPLY_TAG_FILTER, PROFILE_PAGE_LOADED, PROFILE_PAGE_UNLOADED } from "constants/actionTypes"
 import agent from "agent"
-import { Banner } from "components/Banner"
+import Banner from "components/Banner"
 import { Pagination, Sidebar, TabList, TagsList } from "components/UI"
 import style from "./Profile.module.scss"
 import ArticleList from "components/UI/ArticleList"
 import { ROUTES } from "constants/routes"
+import PropTypes from "prop-types"
+import { article, user } from "constants/types"
 
 const mapStateToProps = (state) => ({
 	...state.articleList,
@@ -31,7 +33,7 @@ const ProfileFavorites = ({
 	profile,
 	currentPage,
 }) => {
-	const [selectedTag, setSelectedTag] = useState(null)
+	const [selectedTag, setSelectedTag] = useState()
 	useEffect(() => {
 		onLoad(
 			Promise.all([
@@ -101,9 +103,21 @@ const ProfileFavorites = ({
 					<TagsList tags={getUserTag} onClickTag={clickTagHandler} />
 				</Sidebar>
 			</div>
-			<Pagination request={getPaginationRequestFavoritedBy(profile.username)}/>
+			<Pagination request={getPaginationRequestFavoritedBy(profile.username)} />
 		</>
 	)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileFavorites)
+
+ProfileFavorites.propTypes = {
+	onLoad: PropTypes.func.isRequired,
+	onUnload: PropTypes.func.isRequired,
+	onClickTag: PropTypes.func.isRequired,
+	articles: PropTypes.arrayOf(article),
+	currentPage: PropTypes.number,
+	articlesCount: PropTypes.number,
+	pager: PropTypes.func,
+	match: PropTypes.object.isRequired,
+	profile: user
+}

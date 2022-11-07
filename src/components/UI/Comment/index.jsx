@@ -3,14 +3,15 @@ import { Text } from ".."
 import { ArticleMeta } from "../ArticleMeta"
 import DeleteButton from "../DeleteButton"
 import style from "./Comment.module.scss"
+import PropTypes from 'prop-types'
+import { comment, user } from "constants/types"
 
-const Comment = (props) => {
-    const comment = props.comment
-    const show = props.currentUser?.username === comment.author.username
+const Comment = ({ comment, currentUser, slug, type, children }) => {
+    const show = currentUser?.username === comment.author.username
     return (
         <div className={style.card}>
             <div className={style.top}>
-                {props.type === 'input' ? props.children :
+                {type === 'input' ? children :
                     <Text color="secondary">{comment.body}</Text>
                 }
             </div>
@@ -20,7 +21,7 @@ const Comment = (props) => {
                     username={comment.author.username}
                     createdAt={comment.createdAt}
                 >
-                    <DeleteButton show={show} slug={props.slug} commentId={comment.id} />
+                    <DeleteButton show={show} slug={slug} commentId={comment.id} />
                 </ArticleMeta>
             </div>
         </div>
@@ -28,3 +29,11 @@ const Comment = (props) => {
 }
 
 export default Comment
+
+Comment.propTypes = {
+    comment: comment.isRequired,
+    currentUser: user.isRequired,
+    slug: PropTypes.string.isRequired,
+    type: PropTypes.string,
+    children: PropTypes.element
+}

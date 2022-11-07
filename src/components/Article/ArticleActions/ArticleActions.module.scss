@@ -1,4 +1,9 @@
 .actions {
-  display: flex;
-  gap: 8px;
+	display: flex;
+	gap: 8px;
+	@media screen and (max-width: 768px) {
+		span {
+			display: none;
+		}
+	}
 }

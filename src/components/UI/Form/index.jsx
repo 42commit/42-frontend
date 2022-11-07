@@ -1,10 +1,11 @@
 import React from "react"
-import PropTypes from "prop-types"
+import PropTypes, { element } from "prop-types"
 import style from "./Form.module.scss"
 import { Button } from ".."
 import ListErrors from "../ListErrors"
 
-export const Form = ({ button = "OK", onSubmit, onClick, children, disabled, errors }) => {
+const Form = ({ button = "OK", onSubmit, onClick, children, disabled, errors }) => {
+  console.log(errors, 'err');
   return (
     <form className={style.form} onSubmit={onSubmit}>
       <div className={style.inputs}>
@@ -22,11 +23,13 @@ export const Form = ({ button = "OK", onSubmit, onClick, children, disabled, err
   )
 }
 
+export default Form;
+
 Form.propTypes = {
-  errors: PropTypes.any,
+  errors: PropTypes.object,
   button: PropTypes.string,
   onSubmit: PropTypes.func,
   onClick: PropTypes.func,
-  children: PropTypes.any.isRequired,
+  children: PropTypes.arrayOf(PropTypes.element.isRequired).isRequired,
   disabled: PropTypes.bool,
 }

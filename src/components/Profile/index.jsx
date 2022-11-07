@@ -1,6 +1,6 @@
 import ArticleList from "../UI/ArticleList"
 import React, { useCallback, useEffect, useMemo, useState } from "react"
-import agent from "../../agent"
+import agent from "agent"
 import { connect } from "react-redux"
 import {
 	FOLLOW_USER,
@@ -8,10 +8,12 @@ import {
 	PROFILE_PAGE_LOADED,
 	PROFILE_PAGE_UNLOADED,
 	APPLY_TAG_FILTER,
-} from "../../constants/actionTypes"
+} from "constants/actionTypes"
 import { Pagination, Sidebar, TabList, TagsList } from "../UI"
-import { Banner } from "../Banner"
+import Banner from "../Banner"
 import style from "./Profile.module.scss"
+import PropTypes from "prop-types"
+import { article, user } from "constants/types"
 
 const mapStateToProps = (state) => ({
 	...state.articleList,
@@ -39,7 +41,6 @@ const Profile = ({
 	onLoad,
 	onUnload,
 	profile,
-	currentUser,
 	articles,
 	articlesCount,
 	currentPage,
@@ -47,7 +48,7 @@ const Profile = ({
 	pager,
 	onClickTag,
 }) => {
-	const [selectedTag, setSelectedTag] = useState(null)
+	const [selectedTag, setSelectedTag] = useState()
 	useEffect(() => {
 		onLoad(
 			Promise.all([
@@ -116,9 +117,21 @@ const Profile = ({
 					<TagsList tags={getUserTag} onClickTag={clickTagHandler} />
 				</Sidebar>
 			</div>
-			<Pagination request={getPaginationRequestByAuthor(profile.username)}/>
+			<Pagination request={getPaginationRequestByAuthor(profile.username)} />
 		</>
 	)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile)
+
+Profile.propTypes = {
+	onLoad: PropTypes.func.isRequired,
+	onUnload: PropTypes.func.isRequired,
+	onClickTag: PropTypes.func.isRequired,
+	articles: PropTypes.arrayOf(article),
+	currentPage: PropTypes.number,
+	articlesCount: PropTypes.number,
+	pager: PropTypes.func,
+	match: PropTypes.object.isRequired,
+	profile: user
+}

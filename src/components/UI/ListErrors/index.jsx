@@ -1,5 +1,6 @@
 import React from "react"
 import style from "./ListErrors.module.scss"
+import PropTypes from "prop-types"
 
 const ListErrors = ({ errors }) => {
 	if (errors)
@@ -18,3 +19,7 @@ const ListErrors = ({ errors }) => {
 }
 
 export default ListErrors
+
+ListErrors.propTypes = {
+	errors: PropTypes.array,
+}

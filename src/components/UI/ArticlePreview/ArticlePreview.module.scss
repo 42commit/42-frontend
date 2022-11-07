@@ -4,6 +4,7 @@
 	padding: 32px 0;
 	max-width: calc(100vw - 350px);
 	border-bottom: 2px solid var(--divider-color);
+
 	.img {
 		width: 160px;
 		height: 228px;
@@ -16,6 +17,7 @@
 		flex-direction: column;
 		gap: 16px;
 		flex: 1;
+
 		.article {
 			display: flex;
 			flex-direction: column;
@@ -30,6 +32,15 @@
 				text-decoration: none;
 				flex-shrink: 0;
 			}
+			@media screen and (max-width: 768px) {
+				flex-direction: column-reverse;
+				justify-content: center;
+				align-items: center;
+				gap: 16px;
+			}
 		}
+	}
+	@media screen and (max-width: 768px) {
+		max-width: 100vw;
 	}
 }

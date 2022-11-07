@@ -1,21 +1,14 @@
-import React, { useRef, useState } from "react"
+import React, { useState } from "react"
 import PropTypes from "prop-types"
 import style from "./Input.module.scss"
 import { Text } from "../Typography/Text/"
-import { AlertIcon, CheckIcon, ClipIcon, EyeIcon } from "components/Icons"
+import { AlertIcon, CheckIcon, EyeIcon } from "components/Icons"
 
 export function Input({ type = 'text', label = '', placeholder, success, error, value, onChange, onKeyUp, name }) {
-
-    const fileRef = useRef(null)
-    const [fileName, setFileName] = useState('')
     const [isVisible, setVisible] = useState(false)
     const clickEye = (e) => {
         e.preventDefault();
         setVisible(!isVisible);
-    }
-    const handleChange = (e) => {
-        e.preventDefault();
-        setFileName(fileRef.current?.value.replace(/.*[/\\]/, ''));
     }
     const className = `
     ${type === 'comment' ? style.comment__wrapper : style.default}
@@ -58,22 +51,6 @@ export function Input({ type = 'text', label = '', placeholder, success, error, 
                         success ? <CheckIcon /> :
                             error ? <AlertIcon /> : ''}
                 </div>
-                {/* {type === 'file' &&
-                    <>
-                        <label className={style.icon} htmlFor="file">
-                            <ClipIcon />
-                        </label>
-                        <input
-                            onChange={handleChange}
-                            ref={fileRef}
-                            id='file'
-                            type={type}
-                            accept=".png, .jpg, .jpeg"
-                            className={style.file}
-                            value={fileName}
-                        />
-                    </>
-                } */}
                 {type === 'password' &&
                     <button onClick={clickEye} className={style.icon}>
                         <EyeIcon type={isVisible ? 'hide' : 'show'} />
@@ -89,10 +66,11 @@ export function Input({ type = 'text', label = '', placeholder, success, error, 
 Input.propTypes = {
     type: PropTypes.string,
     label: PropTypes.string,
-    placeholder: PropTypes.string,
+    placeholder: PropTypes.string.isRequired,
     success: PropTypes.string,
     error: PropTypes.string,
     value: PropTypes.string,
-    onChange: PropTypes.func,
-    onKeyUp: PropTypes.func
+    onChange: PropTypes.func.isRequired,
+    onKeyUp: PropTypes.func,
+    name: PropTypes.string
 }

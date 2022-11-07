@@ -1,18 +1,26 @@
 .li {
 	display: flex;
 	.tab {
+		box-sizing: border-box;
 		background-color: var(--bg-primary-color);
 		padding: 0 24px;
 		border: none;
 		display: flex;
 		align-items: center;
 		text-decoration: none;
+		max-width: 30vw;
+		overflow-x: scroll !important;
+		&::-webkit-scrollbar {
+			display: none;
+		}
+
 		cursor: pointer;
-		max-width: calc(100vw - 572px);
-		overflow-x: hidden;
 		&:hover,
 		&:active {
 			color: var(--text-primary-color);
+		}
+		@media screen and (max-width: 768px) {
+			text-align: center;
 		}
 	}
 	.active {

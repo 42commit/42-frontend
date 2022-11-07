@@ -3,6 +3,8 @@ import { TabList } from "components/UI"
 import React from "react"
 import { connect } from "react-redux"
 import style from "./MainView.module.scss"
+import PropTypes from "prop-types"
+import { article, user } from "constants/types"
 
 const mapStateToProps = (state) => ({
 	...state.articleList,
@@ -14,7 +16,7 @@ const mapStateToProps = (state) => ({
 
 //eventKeys : all, feed
 
-const MainView = (props) => {
+const MainView = ({ currentUser, pager, articles, articlesCount, currentPage }) => {
 	const getTabs = () => {
 		const userTabs = [
 			{
@@ -32,21 +34,28 @@ const MainView = (props) => {
 				eventKey: "all",
 			},
 		]
-		return props.currentUser ? userTabs : anonymousTabs
+		return currentUser ? userTabs : anonymousTabs
 	}
 
 	return (
 		<div className={style.main}>
 			<TabList tabs={getTabs()} />
 			<ArticleList
-				pager={props.pager}
-				articles={props.articles}
-				loading={props.loading}
-				articlesCount={props.articlesCount}
-				currentPage={props.currentPage}
+				pager={pager}
+				articles={articles}
+				articlesCount={articlesCount}
+				currentPage={currentPage}
 			/>
 		</div>
 	)
 }
 
 export default connect(mapStateToProps)(MainView)
+
+MainView.propTypes = {
+	currentUser: user,
+	articles: PropTypes.arrayOf(article),
+	currentPage: PropTypes.number,
+	articlesCount: PropTypes.number,
+	pager: PropTypes.func
+}

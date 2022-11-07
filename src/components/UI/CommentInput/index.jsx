@@ -6,6 +6,8 @@ import { ArticleMeta } from "../ArticleMeta"
 import style from "./CommentInput.module.scss"
 import { Button } from ".."
 import agent from "agent"
+import PropTypes from 'prop-types'
+import { user } from "constants/types"
 
 const mapStateToProps = state => ({
     profile: state.profile,
@@ -21,28 +23,28 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 
-const CommentInput = (props) => {
+const CommentInput = ({ onSubmit, onLoad, onUnload, slug, currentUser, profile }) => {
     const [body, setBody] = useState('')
     const bodyHandler = (e) => {
         setBody(e.currentTarget.value)
     }
     const createComment = (e) => {
         e.preventDefault()
-        props.onSubmit(agent.Comments.create(props.slug, { body }))
+        onSubmit(agent.Comments.create(slug, { body }))
         setBody('')
     }
     useEffect(() => {
-        props.onLoad(Promise.all([
-            agent.Profile.get(props.currentUser.username),
-            agent.Articles.byAuthor(props.currentUser.username)
+        onLoad(Promise.all([
+            agent.Profile.get(currentUser.username),
+            agent.Articles.byAuthor(currentUser.username)
         ]))
         return () => {
-            props.onUnload()
+            onUnload()
         }
-    }, [props.onLoad])
+    }, [onLoad])
 
 
-    if (!props.profile.image && !props.profile.username) return null
+    if (!profile.image && !profile.username) return null
     return (
         <form className={style.card} onSubmit={createComment}>
             <div className={style.top}>
@@ -55,8 +57,8 @@ const CommentInput = (props) => {
             </div>
             <div className={style.footer}>
                 <ArticleMeta
-                    image={props.profile.image}
-                    username={props.profile.username}
+                    image={profile.image}
+                    username={profile.username}
                 >
                     <Button htmlType="submit">
                         Отправить комментарий
@@ -68,3 +70,12 @@ const CommentInput = (props) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommentInput)
+
+CommentInput.propTypes = {
+    currentUser: user.isRequired,
+    profile: user.isRequired,
+    slug: PropTypes.string.isRequired,
+    onSubmit: PropTypes.func.isRequired,
+    onLoad: PropTypes.func.isRequired,
+    onUnload: PropTypes.func.isRequired
+}

@@ -1,6 +1,7 @@
 @import "assets/style/global.scss";
 
 .tags__list {
+	align-self: end;
 	display: flex;
 	gap: 4px;
 	flex-wrap: wrap;
@@ -10,6 +11,6 @@
 	max-height: calc(100vh - 560px);
 	@include scroll;
 	@media screen and (max-width: 768px) {
-		max-height: unset;
+		max-height: 250px;
 	}
 }

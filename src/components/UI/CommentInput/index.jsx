@@ -60,7 +60,7 @@ const CommentInput = ({ onSubmit, onLoad, onUnload, slug, currentUser, profile }
                     image={profile.image}
                     username={profile.username}
                 >
-                    <Button htmlType="submit">
+                    <Button mark="comment" htmlType="submit">
                         Отправить комментарий
                     </Button>
                 </ArticleMeta>

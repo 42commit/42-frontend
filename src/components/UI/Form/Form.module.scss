@@ -22,4 +22,7 @@
 		min-height: 24px;
 		width: 100%;
 	}
+	@media screen and (max-width: 768px) {
+		align-items: center;
+	}
 }

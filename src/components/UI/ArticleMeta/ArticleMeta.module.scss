@@ -4,15 +4,19 @@
 	align-items: center;
 	margin: 0 auto;
 	justify-content: space-between;
-	gap: 30px;
+	gap: 8px;
 	flex-wrap: wrap;
 
-	@media (max-width: 550px) {
-		justify-content: center;
+	@media screen and (max-width: 550px) {
+		button[data-mark="comment"] {
+			margin: 0 auto;
+		}
 	}
 
 	.left {
 		display: flex;
+		align-content: center;
+		justify-content: center;
 		gap: 8px;
 	}
 }

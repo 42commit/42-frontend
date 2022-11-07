@@ -5,7 +5,6 @@ import { Button } from "../UI"
 import ListErrors from "../ListErrors"
 
 const Form = ({ button = "OK", onSubmit, onClick, children, disabled, errors }) => {
-  console.log(errors, 'err');
   return (
     <form className={style.form} onSubmit={onSubmit}>
       <div className={style.inputs}>

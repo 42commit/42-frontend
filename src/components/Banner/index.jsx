@@ -28,7 +28,6 @@ const Article = connect(mapStateToProps)(({ article }) => {
 })
 
 const User = connect(mapStateToProps)(({ profile }) => {
-	console.log('profile', profile);
 	if (!profile?.username) return null
 	return (
 		<div className={styles.userWrapper}>

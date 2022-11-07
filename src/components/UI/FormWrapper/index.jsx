@@ -4,7 +4,7 @@ import style from "./FormWrapper.module.scss"
 import { Button, Title } from ".."
 import { Link } from "react-router-dom"
 
-export const FormWrapper = ({ title, children, link, linkName }) => {
+const FormWrapper = ({ title, children, link, linkName }) => {
   return (
     <div className={style.wrapper}>
       <Title type={2}>{title}</Title>
@@ -13,6 +13,8 @@ export const FormWrapper = ({ title, children, link, linkName }) => {
     </div>
   )
 }
+
+export default FormWrapper
 
 FormWrapper.propTypes = {
   children: PropTypes.any.isRequired,

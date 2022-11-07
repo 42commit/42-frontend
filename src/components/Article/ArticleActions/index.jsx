@@ -7,7 +7,8 @@ import { EditIcon, TrashIcon } from "components/Icons"
 import { DELETE_ARTICLE } from "constants/actionTypes"
 import agent from "agent"
 import { ROUTES } from "constants/routes"
-
+import PropTypes from "prop-types"
+import { article, user } from "constants/types"
 
 const mapStateToProps = (state) => {
 	return {
@@ -46,3 +47,9 @@ const ArticleActions = ({ article, onClickDelete, currentUser }) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArticleActions)
+
+ArticleActions.propTypes = {
+	article: article.isRequired,
+	onClickDelete: PropTypes.func.isRequired,
+	currentUser: user
+}

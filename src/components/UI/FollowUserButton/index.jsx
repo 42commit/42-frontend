@@ -4,6 +4,8 @@ import { FOLLOW_USER, UNFOLLOW_USER } from "constants/actionTypes"
 import React from "react"
 import { connect } from "react-redux"
 import { Button } from ".."
+import PropTypes from 'prop-types'
+import { user } from "constants/types"
 
 const mapStateToProps = (state) => {
 	return {
@@ -26,12 +28,7 @@ const mapDispatchToProps = (dispatch) => ({
 		}),
 })
 
-export const FollowUserButton = connect(
-	mapStateToProps,
-	mapDispatchToProps,
-)((props) => {
-	const { currentUser, profile, onFollow, onUnfollow } = props
-
+const FollowUserButton = ({ currentUser, profile, onFollow, onUnfollow }) => {
 	if (currentUser && profile.username === currentUser.username) {
 		return null
 	}
@@ -50,4 +47,13 @@ export const FollowUserButton = connect(
 	</>)
 
 	return <Button onClick={handleClick}>{buttonContent}</Button>
-})
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FollowUserButton)
+
+FollowUserButton.propTypes = {
+	currentUser: user,
+	profile: user,
+	onFollow: PropTypes.func,
+	onUnfollow: PropTypes.func,
+}

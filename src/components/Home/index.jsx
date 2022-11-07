@@ -1,11 +1,12 @@
 import React, { useEffect } from "react"
-import agent from "../../agent"
+import agent from "agent"
 import { connect } from "react-redux"
-import { HOME_PAGE_LOADED, HOME_PAGE_UNLOADED, APPLY_TAG_FILTER } from "../../constants/actionTypes"
+import { HOME_PAGE_LOADED, HOME_PAGE_UNLOADED, APPLY_TAG_FILTER } from "constants/actionTypes"
 import { TagsList, Sidebar, Pagination } from "components/UI"
-import { Banner } from "components/Banner"
+import Banner from "components/Banner"
 import MainView from "components/MainView"
 import style from "./Home.module.scss"
+import PropTypes from "prop-types"
 
 const mapStateToProps = (state) => ({
 	...state.home,
@@ -43,3 +44,11 @@ const Home = ({ token, onLoad, onUnload, tags, onClickTag }) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)
+
+Home.Article = {
+	token: PropTypes.string.isRequired,
+	onLoad: PropTypes.func.isRequired,
+	onUnload: PropTypes.func.isRequired,
+	tags: PropTypes.arrayOf(PropTypes.string.isRequired),
+	onClickTag: PropTypes.func.isRequired,
+}

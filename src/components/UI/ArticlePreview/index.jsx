@@ -8,7 +8,8 @@ import { ArticleMeta } from "../ArticleMeta"
 import style from './ArticlePreview.module.scss'
 import { LikeUnlikeButton } from "../LikeUnlikeButton"
 import { ROUTES } from "constants/routes"
-
+import PropTypes from "prop-types"
+import { article, user } from "constants/types"
 
 const mapStateToProps = (state) => ({
     currentUser: state.common.currentUser
@@ -27,19 +28,17 @@ const mapDispatchToProps = (dispatch) => ({
         }),
 })
 
-const ArticlePreview = (props) => {
-    const article = props.article
-
+const ArticlePreview = ({ article, currentUser, image, unfavorite, favorite }) => {
     const handleFavouriteClick = (ev) => {
         ev.preventDefault()
-        if (!props.currentUser) return window.location.replace(ROUTES.LOGIN)
-        if (article.favorited) props.unfavorite(article.slug)
-        else props.favorite(article.slug)
+        if (!currentUser) return window.location.replace(ROUTES.LOGIN)
+        if (article.favorited) unfavorite(article.slug)
+        else favorite(article.slug)
     }
 
     return (
         <article className={style.wrapper}>
-            {props.image && <img className={style.img} alt="" src={props.image} />}
+            {image && <img className={style.img} alt="" src={image} />}
             <div className={style.content__wrapper}>
                 <ArticleMeta
                     image={article.author.image}
@@ -66,3 +65,11 @@ const ArticlePreview = (props) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArticlePreview)
+
+ArticlePreview.propTypes = {
+    article: article,
+    currentUser: user,
+    image: PropTypes.string,
+    unfavorite: PropTypes.func.isRequired,
+    favorite: PropTypes.func.isRequired,
+}

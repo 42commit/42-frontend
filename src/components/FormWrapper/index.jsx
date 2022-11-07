@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import style from "./FormWrapper.module.scss"
-import { Button, Title } from ".."
+import { Button, Title } from "../UI"
 import { Link } from "react-router-dom"
 
 const FormWrapper = ({ title, children, link, linkName }) => {

@@ -12,7 +12,7 @@ import {
 import { Input } from "components/UI/Input"
 import styles from "./Editor.module.scss"
 import { Tag } from "components/UI"
-import FormWrapper from "components/UI/FormWrapper"
+import FormWrapper from "components/FormWrapper"
 import Form from "components/Form"
 import PropTypes from "prop-types"
 

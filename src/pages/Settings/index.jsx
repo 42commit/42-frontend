@@ -5,7 +5,7 @@ import { SETTINGS_SAVED, SETTINGS_PAGE_UNLOADED, LOGOUT } from "constants/action
 import { Input } from "components/UI/Input"
 import { Button } from "components/UI"
 import styles from "./Settings.module.scss"
-import FormWrapper from "components/UI/FormWrapper"
+import FormWrapper from "components/FormWrapper"
 import Form from "components/Form"
 import AvatarChanger from "components/UI/AvatarChanger"
 import PropTypes from "prop-types"

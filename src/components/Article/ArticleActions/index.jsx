@@ -5,7 +5,7 @@ import styles from './ArticleActions.module.scss'
 import { Button } from "components/UI"
 import { EditIcon, TrashIcon } from "components/Icons"
 import { DELETE_ARTICLE } from "constants/actionTypes"
-import agent from "agent"
+import agent from "services/agent"
 import { ROUTES } from "constants/routes"
 import PropTypes from "prop-types"
 import { article, user } from "constants/types"
@@ -35,7 +35,6 @@ const ArticleActions = ({ article, onClickDelete, currentUser }) => {
 						<span>Редактировать запись</span>
 					</Button>
 				</Link>
-
 				<Button type="delete" onClick={del}>
 					<TrashIcon />
 					<span>Удалить запись</span>

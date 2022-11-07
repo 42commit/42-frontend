@@ -1,5 +1,5 @@
 import React, { useMemo } from "react"
-import agent from "agent"
+import agent from "services/agent"
 import { connect } from "react-redux"
 import { SET_PAGE } from "constants/actionTypes"
 import style from "./Pagination.module.scss"

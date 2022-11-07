@@ -5,7 +5,7 @@ import { Input } from "../Input"
 import { ArticleMeta } from "../ArticleMeta"
 import style from "./CommentInput.module.scss"
 import { Button } from ".."
-import agent from "agent"
+import agent from "services/agent"
 import PropTypes from 'prop-types'
 import { user } from "constants/types"
 

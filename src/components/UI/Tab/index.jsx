@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import style from './Tab.module.scss';
-import agent from 'agent';
+import agent from 'services/agent';
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux"
 import { CHANGE_TAB } from 'constants/actionTypes';

@@ -4,7 +4,7 @@ import style from "./Input.module.scss"
 import { Text } from "../Typography/Text/"
 import { AlertIcon, CheckIcon, EyeIcon } from "components/Icons"
 
-export function Input({ type = 'text', label = '', placeholder, success, error, value, onChange, onKeyUp, name }) {
+export const Input = ({ type = 'text', label = '', placeholder, success, error, value, onChange, onKeyUp, name }) => {
     const [isVisible, setVisible] = useState(false)
     const clickEye = (e) => {
         e.preventDefault();

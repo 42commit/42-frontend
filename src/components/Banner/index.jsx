@@ -1,5 +1,5 @@
 import { Title } from "components/UI"
-import FollowUserButton from "components/UI/FollowUserButton"
+import FollowUserButton from "components/UI/Buttons/FollowUserButton"
 import { connect } from "react-redux"
 import PropTypes from "prop-types"
 import React from "react"

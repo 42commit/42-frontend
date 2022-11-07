@@ -3,7 +3,7 @@ import React, { useState } from "react"
 import styles from "./AvatarChanger.module.scss"
 import PropTypes from 'prop-types'
 
-export const AvatarChanger = ({ avatar = "smile", setAvatar }) => {
+const AvatarChanger = ({ avatar = "smile", setAvatar }) => {
 	const [visible, setVisible] = useState(false)
 
 	const avatars = ["asterisk", "flower", "human", "cook", "space-invaders", "alien", "smile"]
@@ -30,6 +30,8 @@ export const AvatarChanger = ({ avatar = "smile", setAvatar }) => {
 		</div>
 	)
 }
+
+export default AvatarChanger
 
 AvatarChanger.propTypes = {
 	avatar: PropTypes.string.isRequired,

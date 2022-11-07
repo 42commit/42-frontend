@@ -33,6 +33,7 @@ const PaginationComponent = ({ articleList, onSetPage, request = agent.Articles.
 			range.length < 7 || currentPage > range.length - 4 ? range.length - 1 : currentPage < 4 ? 6 : currentPage + 3,
 		[currentPage, range],
 	)
+	const arr = useMemo(() => range.slice(startPage, endPage), [range, startPage, endPage])
 
 	const setPage = (page) => {
 		if (pager) onSetPage(page, pager(page))
@@ -50,20 +51,20 @@ const PaginationComponent = ({ articleList, onSetPage, request = agent.Articles.
 	}
 	return (
 		<ul className={style.pagination}>
-			{/* <PageLink
-			isCurrent={currentPage === 0}
-			onClick={(ev) => {
-				ev.preventDefault()
-				setPage(0)
-			}}
-			isFirst
-		>
-			1
-		</PageLink> */}
-			<PageLink isCurrent={false} onClick={onPrevClick} isFirst>
+			<PageLink
+				isCurrent={currentPage === 0}
+				onClick={(ev) => {
+					ev.preventDefault()
+					setPage(0)
+				}}
+				isFirst
+			>
+				1
+			</PageLink>
+			<PageLink isCurrent={false} onClick={onPrevClick}>
 				<ArrowIcon side="left" />
 			</PageLink>
-			{range.map((num) => {
+			{arr.map((num) => {
 				return (
 					<PageLink
 						isCurrent={num === currentPage}
@@ -77,10 +78,10 @@ const PaginationComponent = ({ articleList, onSetPage, request = agent.Articles.
 					</PageLink>
 				)
 			})}
-			<PageLink isCurrent={false} onClick={onNextClick} isLast>
+			<PageLink isCurrent={false} onClick={onNextClick}>
 				<ArrowIcon side="right" />
 			</PageLink>
-			{/* <PageLink
+			<PageLink
 				isCurrent={currentPage === range.length - 1}
 				onClick={(ev) => {
 					ev.preventDefault()
@@ -89,7 +90,7 @@ const PaginationComponent = ({ articleList, onSetPage, request = agent.Articles.
 				isLast
 			>
 				{range.length}
-			</PageLink> */}
+			</PageLink>
 		</ul>
 	)
 }

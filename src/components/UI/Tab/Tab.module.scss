@@ -9,10 +9,10 @@
 		align-items: center;
 		text-decoration: none;
 		max-width: 30vw;
+		overflow-x: scroll;
 		&::-webkit-scrollbar {
 			display: none;
 		}
-
 		cursor: pointer;
 		&:hover,
 		&:active {

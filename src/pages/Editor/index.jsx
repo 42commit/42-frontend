@@ -10,7 +10,7 @@ import {
 	UPDATE_FIELD_EDITOR,
 } from "constants/actionTypes"
 import { Input } from "components/UI/Input"
-import styles from "./Editor.module.scss"
+import style from "./Editor.module.scss"
 import { Tag } from "components/UI"
 import FormWrapper from "components/FormWrapper"
 import Form from "components/Form"
@@ -46,7 +46,7 @@ const EditorComponent = ({
 	inProgress,
 	match,
 	articleSlug,
-	appLoaded
+	appLoaded,
 }) => {
 	if (!appLoaded) return null
 
@@ -57,7 +57,7 @@ const EditorComponent = ({
 	const watchTags = (e) => {
 		if (e.key === "Enter") {
 			e.preventDefault()
-			if (tagInput && !tagList.find(tag => tag === tagInput)) onAddTag()
+			if (tagInput && !tagList.find((tag) => tag === tagInput)) onAddTag()
 		}
 	}
 
@@ -93,44 +93,41 @@ const EditorComponent = ({
 	}, [match])
 
 	return (
-		<FormWrapper title='Новая запись'>
-			<Form button='Опубликовать' onClick={submitFormHandler} disabled={inProgress} errors={errors}>
-				<Input name="title" label="Заголовок" placeholder="Название статьи" value={title} onChange={changeHandler} />
-				<Input
-					name="description"
-					label="Описание"
-					placeholder="О чем статья"
-					value={description}
-					onChange={changeHandler}
-				/>
-				{/* <Input
-								label="Изображение"
-								type="file"
-								placeholder="Изображение (опционально)"
-							/> */}
-				<Input
-					name="body"
-					label="Содержание"
-					placeholder="Текст статьи"
-					type="textarea"
-					value={body}
-					onChange={changeHandler}
-				/>
-				<Input
-					name="tagInput"
-					label="Тэги"
-					placeholder="Теги (по нажатию Enter)"
-					value={tagInput}
-					onChange={changeHandler}
-					onKeyUp={watchTags}
-				/>
-				<div className={styles.taglist}>
-					{(tagList || []).map((tag) => {
-						return <Tag tag={tag} key={tag} handleClick={() => onRemoveTag(tag)} />
-					})}
-				</div>
-			</Form>
-		</FormWrapper>
+		<div className={style.wrapper}>
+			<FormWrapper title="Новая запись">
+				<Form button="Опубликовать" onClick={submitFormHandler} disabled={inProgress} errors={errors}>
+					<Input name="title" label="Заголовок" placeholder="Название статьи" value={title} onChange={changeHandler} />
+					<Input
+						name="description"
+						label="Описание"
+						placeholder="О чем статья"
+						value={description}
+						onChange={changeHandler}
+					/>
+					<Input
+						name="body"
+						label="Содержание"
+						placeholder="Текст статьи"
+						type="textarea"
+						value={body}
+						onChange={changeHandler}
+					/>
+					<Input
+						name="tagInput"
+						label="Тэги"
+						placeholder="Теги (по нажатию Enter)"
+						value={tagInput}
+						onChange={changeHandler}
+						onKeyUp={watchTags}
+					/>
+					<div className={style.taglist}>
+						{(tagList || []).map((tag) => {
+							return <Tag tag={tag} key={tag} handleClick={() => onRemoveTag(tag)} />
+						})}
+					</div>
+				</Form>
+			</FormWrapper>
+		</div>
 	)
 }
 
@@ -152,5 +149,5 @@ EditorComponent.propTypes = {
 	inProgress: PropTypes.bool,
 	match: PropTypes.object.isRequired,
 	articleSlug: PropTypes.string,
-	appLoaded: PropTypes.bool.isRequired
+	appLoaded: PropTypes.bool.isRequired,
 }

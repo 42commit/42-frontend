@@ -4,7 +4,7 @@ import { connect } from "react-redux"
 import { SETTINGS_SAVED, SETTINGS_PAGE_UNLOADED, LOGOUT } from "constants/actionTypes"
 import { Input } from "components/UI/Input"
 import { Button } from "components/UI"
-import styles from "./Settings.module.scss"
+import style from "./Settings.module.scss"
 import FormWrapper from "components/FormWrapper"
 import Form from "components/Form"
 import AvatarChanger from "components/UI/AvatarChanger"
@@ -64,7 +64,7 @@ const Settings = ({ onSubmitForm, inProgress, currentUser, errors, onClickLogout
 		onSubmitForm(user)
 	}
 	return (
-		<div className={styles.wrapper}>
+		<div className={style.wrapper}>
 			<FormWrapper title='Ваши настройки'>
 				<Form button='Сохранить' onSubmit={submitFormHandler} disabled={inProgress} errors={errors}>
 					<AvatarChanger avatar={values.image} setAvatar={setAvatar} />
@@ -101,7 +101,7 @@ const Settings = ({ onSubmitForm, inProgress, currentUser, errors, onClickLogout
 					/>
 				</Form>
 			</FormWrapper>
-			<div className={styles.logout}>
+			<div className={style.logout}>
 				<Button type="delete" onClick={onClickLogout}>
 					Выйти из аккаунта
 				</Button>

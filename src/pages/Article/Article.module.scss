@@ -1,11 +1,9 @@
 @import "assets/style/global.scss";
 
 .wrapper {
-	@include scroll;
-	max-height: calc(100vh - 60px);
+	@include page;
 	.main {
-		width: var(--layout-width);
-		max-width: 100vw;
+		@include layout;
 		margin: auto;
 		padding: 0 16px;
 		overflow-wrap: break-word;
@@ -22,12 +20,9 @@
 			}
 			blockquote {
 				padding: 0 32px;
-				border-radius: 20px;
+				border-radius: var(--border-radius);
 				background-color: var(--bg-secondary-color);
 			}
 		}
-	}
-	@media screen and (max-width: 768px) {
-		max-height: unset;
 	}
 }

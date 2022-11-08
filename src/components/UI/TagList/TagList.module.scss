@@ -1,14 +1,10 @@
 @import "assets/style/global.scss";
 
 .tags__list {
-	align-self: end;
 	display: flex;
 	gap: 4px;
 	flex-wrap: wrap;
 	justify-content: flex-end;
-	padding: 0;
-	margin: 0;
-	max-height: calc(100vh - 560px);
 	@include scroll;
 	@media screen and (max-width: 768px) {
 		max-height: 250px;

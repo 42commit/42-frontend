@@ -37,17 +37,7 @@ const mapDispatchToProps = (dispatch) => ({
 	onClickTag: (tag, pager, payload) => dispatch({ type: APPLY_TAG_FILTER, tag, pager, payload }),
 })
 
-const Profile = ({
-	onLoad,
-	onUnload,
-	profile,
-	articles,
-	articlesCount,
-	currentPage,
-	match,
-	pager,
-	onClickTag,
-}) => {
+const Profile = ({ onLoad, onUnload, profile, articles, articlesCount, currentPage, match, pager, onClickTag }) => {
 	const [selectedTag, setSelectedTag] = useState()
 	useEffect(() => {
 		onLoad(
@@ -101,9 +91,9 @@ const Profile = ({
 	const getPaginationRequestByAuthor = (username) => (page) => agent.Articles.byAuthor(username, page)
 
 	return (
-		<>
+		<div className={style.wrapper}>
 			<Banner variant="user" />
-			<div className={style.wrapper}>
+			<div className={style.main}>
 				<div className={style.articles}>
 					<TabList tabs={tabs} tagsOff />
 					<ArticleList
@@ -118,7 +108,7 @@ const Profile = ({
 				</Sidebar>
 			</div>
 			<Pagination request={getPaginationRequestByAuthor(profile.username)} />
-		</>
+		</div>
 	)
 }
 
@@ -133,5 +123,5 @@ Profile.propTypes = {
 	articlesCount: PropTypes.number,
 	pager: PropTypes.func,
 	match: PropTypes.object.isRequired,
-	profile: user
+	profile: user,
 }

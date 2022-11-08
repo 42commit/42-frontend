@@ -23,16 +23,16 @@
 	}
 
 	.default {
-		border: 1px solid var(--divider-color);
+		border: var(--border);
 		background-color: var(--bg-primary-color);
 	}
 
 	.first {
-		border-radius: 20px 0px 0px 20px;
+		border-radius: var(--border-radius) 0px 0px var(--border-radius);
 	}
 
 	.last {
-		border-radius: 0px 20px 20px 0px;
+		border-radius: 0px var(--border-radius) var(--border-radius) 0px;
 	}
 
 	.active,

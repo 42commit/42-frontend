@@ -3,7 +3,7 @@ import FollowUserButton from "components/UI/Buttons/FollowUserButton"
 import { connect } from "react-redux"
 import PropTypes from "prop-types"
 import React from "react"
-import styles from "./Banner.module.scss"
+import style from "./Banner.module.scss"
 import { ArticleMeta } from "components/UI/ArticleMeta"
 import ArticleActions from "components/Article/ArticleActions"
 import { Avatar } from "components/Icons/Avatar"
@@ -20,7 +20,7 @@ const mapStateToProps = (state) => {
 
 const Article = connect(mapStateToProps)(({ article }) => {
 	return (
-		<div className={styles.articleWrapper}>
+		<div className={style.articleWrapper}>
 			<ArticleMeta image={article.author.image} username={article.author.username} createdAt={article.createdAt} />
 			<ArticleActions />
 		</div>
@@ -30,14 +30,14 @@ const Article = connect(mapStateToProps)(({ article }) => {
 const User = connect(mapStateToProps)(({ profile }) => {
 	if (!profile?.username) return null
 	return (
-		<div className={styles.userWrapper}>
+		<div className={style.userWrapper}>
 			<figure>
 				<Avatar size="large" type={profile.image} />
 				<figcaption>
 					<Title type={3}>{profile.username}</Title>
 				</figcaption>
 			</figure>
-			<div className={styles.button}>
+			<div className={style.button}>
 				<FollowUserButton />
 			</div>
 		</div>
@@ -45,9 +45,8 @@ const User = connect(mapStateToProps)(({ profile }) => {
 })
 
 const App = connect(mapStateToProps)(({ appName }) => {
-
 	return (
-		<div className={styles.titleWrapper}>
+		<div className={style.titleWrapper}>
 			<Title type={1} shadow>
 				{appName}
 			</Title>
@@ -57,14 +56,13 @@ const App = connect(mapStateToProps)(({ appName }) => {
 })
 
 const Banner = ({ variant }) => {
-
 	const bannerVariants = {
 		app: App,
 		user: User,
 		article: Article,
 	}
 
-	return <div className={styles.banner}>{React.createElement(bannerVariants[variant])}</div>
+	return <div className={style.banner}>{React.createElement(bannerVariants[variant])}</div>
 }
 
 export default connect(mapStateToProps)(Banner)

@@ -30,7 +30,7 @@ const Home = ({ token, onLoad, onUnload, tags, onClickTag }) => {
 	}, [])
 
 	return (
-		<>
+		<div className={style.wrapper}>
 			<Banner variant="app" />
 			<div className={style.main}>
 				<MainView />
@@ -39,7 +39,7 @@ const Home = ({ token, onLoad, onUnload, tags, onClickTag }) => {
 				</Sidebar>
 			</div>
 			<Pagination />
-		</>
+		</div>
 	)
 }
 

@@ -87,9 +87,9 @@ const ProfileFavorites = ({
 	const getPaginationRequestFavoritedBy = (username) => (page) => agent.Articles.favoritedBy(username, page)
 
 	return (
-		<>
+		<div className={style.wrapper}>
 			<Banner variant="user" />
-			<div className={style.wrapper}>
+			<div className={style.main}>
 				<div className={style.articles}>
 					<TabList tabs={tabs} tagsOff />
 					<ArticleList
@@ -104,7 +104,7 @@ const ProfileFavorites = ({
 				</Sidebar>
 			</div>
 			<Pagination request={getPaginationRequestFavoritedBy(profile.username)} />
-		</>
+		</div>
 	)
 }
 
@@ -119,5 +119,5 @@ ProfileFavorites.propTypes = {
 	articlesCount: PropTypes.number,
 	pager: PropTypes.func,
 	match: PropTypes.object.isRequired,
-	profile: user
+	profile: user,
 }

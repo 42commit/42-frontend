@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import React from "react"
 import { connect } from "react-redux"
-import styles from './ArticleActions.module.scss'
+import style from './ArticleActions.module.scss'
 import { Button } from "components/UI"
 import { EditIcon, TrashIcon } from "components/Icons"
 import { DELETE_ARTICLE } from "constants/actionTypes"
@@ -28,7 +28,7 @@ const ArticleActions = ({ article, onClickDelete, currentUser }) => {
 	}
 	if (canModify)
 		return (
-			<div className={styles.actions}>
+			<div className={style.actions}>
 				<Link to={`${ROUTES.EDITOR}/${article.slug}`}>
 					<Button >
 						<EditIcon />

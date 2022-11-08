@@ -7,6 +7,7 @@ import FormWrapper from "components/FormWrapper"
 import Form from "components/Form"
 import { ROUTES } from "constants/routes"
 import PropTypes from "prop-types"
+import style from "./Register.module.scss"
 
 const mapStateToProps = (state) => ({ ...state.auth })
 
@@ -44,34 +45,36 @@ const Register = ({ onSubmit, onUnload, errors, inProgress }) => {
 	}
 
 	return (
-		<FormWrapper title='Зарегистрироваться' link={ROUTES.LOGIN} linkName='Уже есть аккаунт?'>
-			<Form button='Зарегистрироваться' onSubmit={submitForm(values.username, values.email, values.password)} disabled={inProgress} errors={errors}>
-				<Input
-					name="username"
-					label="Имя пользователя"
-					type="text"
-					placeholder="Имя пользователя"
-					value={values.username}
-					onChange={onChange}
-				/>
-				<Input
-					name="email"
-					label="E-mail"
-					type="email"
-					placeholder="E-mail"
-					value={values.email}
-					onChange={onChange}
-				/>
-				<Input
-					name="password"
-					label="Пароль"
-					type="password"
-					placeholder="Пароль"
-					value={values.password}
-					onChange={onChange}
-				/>
-			</Form>
-		</FormWrapper>
+		<div className={style.wrapper}>
+			<FormWrapper title='Зарегистрироваться' link={ROUTES.LOGIN} linkName='Уже есть аккаунт?'>
+				<Form button='Зарегистрироваться' onSubmit={submitForm(values.username, values.email, values.password)} disabled={inProgress} errors={errors}>
+					<Input
+						name="username"
+						label="Имя пользователя"
+						type="text"
+						placeholder="Имя пользователя"
+						value={values.username}
+						onChange={onChange}
+					/>
+					<Input
+						name="email"
+						label="E-mail"
+						type="email"
+						placeholder="E-mail"
+						value={values.email}
+						onChange={onChange}
+					/>
+					<Input
+						name="password"
+						label="Пароль"
+						type="password"
+						placeholder="Пароль"
+						value={values.password}
+						onChange={onChange}
+					/>
+				</Form>
+			</FormWrapper>
+		</div>
 	)
 }
 

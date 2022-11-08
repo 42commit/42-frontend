@@ -1,17 +1,13 @@
 .tag {
 	display: flex;
-	align-items: center;
 	padding: 4px 8px;
-	width: fit-content;
-	border-radius: 100px;
+	border-radius: var(--border-radius);
 	cursor: pointer;
 	overflow-wrap: anywhere;
-
 	&:hover,
 	&:active,
 	&:visited,
 	&:link {
-		text-decoration: none;
 		color: var(--text-primary-color);
 	}
 }

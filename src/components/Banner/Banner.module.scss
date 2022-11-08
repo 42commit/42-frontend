@@ -1,14 +1,16 @@
+@import "assets/style/global.scss";
+
 .banner {
 	padding: 32px 0 32px 0;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	border-bottom: 2px solid var(--divider-color);
+	border-bottom: var(--border);
 }
 
 .titleWrapper {
-	align-items: center;
+	@include layout;
 	display: flex;
 	flex-direction: column;
 	gap: 8px;
@@ -16,8 +18,7 @@
 }
 
 .userWrapper {
-	width: var(--layout-width);
-	max-width: 100vw;
+	@include layout;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -27,8 +28,7 @@
 }
 
 .articleWrapper {
-	width: var(--layout-width);
-	max-width: 100vw;
+	@include layout;
 	padding: 0 16px;
 	display: flex;
 	align-items: center;

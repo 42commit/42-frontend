@@ -1,9 +1,7 @@
 .info {
-    .author {
-        text-decoration: none;
-    }
-    p, .author p {
-        margin: 0;
-        text-transform: capitalize;
-    }
+	p,
+	.author p {
+		margin: 0;
+		text-transform: capitalize;
+	}
 }

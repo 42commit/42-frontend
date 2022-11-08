@@ -61,9 +61,9 @@ const PaginationComponent = ({ articleList, onSetPage, request = agent.Articles.
 			>
 				1
 			</PageLink>
-			<PageLink isCurrent={false} onClick={onPrevClick}>
+			{(range.length > 7) && <PageLink isCurrent={false} onClick={onPrevClick}>
 				<ArrowIcon side="left" />
-			</PageLink>
+			</PageLink>}
 			{arr.map((num) => {
 				return (
 					<PageLink
@@ -78,9 +78,9 @@ const PaginationComponent = ({ articleList, onSetPage, request = agent.Articles.
 					</PageLink>
 				)
 			})}
-			<PageLink isCurrent={false} onClick={onNextClick}>
+			{(range.length > 7) && <PageLink isCurrent={false} onClick={onNextClick}>
 				<ArrowIcon side="right" />
-			</PageLink>
+			</PageLink>}
 			<PageLink
 				isCurrent={currentPage === range.length - 1}
 				onClick={(ev) => {

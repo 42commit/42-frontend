@@ -9,6 +9,7 @@ import Banner from "components/Banner"
 import style from "./Article.module.scss"
 import PropTypes from "prop-types"
 import { article, comment, user } from "constants/types"
+import { Loader } from "components/UI"
 
 const mapStateToProps = (state) => ({
 	...state.article,
@@ -28,7 +29,7 @@ const Article = ({ onLoad, onUnload, article, currentUser, comments, commentErro
 		}
 	}, [])
 
-	if (!article) return null
+	if (!article) return <Loader />
 
 	const markup = { __html: marked(article.body, { sanitize: true }) }
 	return (

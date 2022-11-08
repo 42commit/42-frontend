@@ -5,7 +5,7 @@ import { Text } from ".."
 
 const mapStateToProps = (state) => ({ currentTag: state.articleList.tag })
 
-function TagComponent({ tag, handleClick, currentTag }) {
+const TagComponent = ({ tag, handleClick, currentTag }) => {
 	let className = currentTag === tag ? style.active : style.default
 
 	return (

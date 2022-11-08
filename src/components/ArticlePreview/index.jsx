@@ -4,9 +4,9 @@ import agent from "services/agent"
 import { connect } from "react-redux"
 import { ARTICLE_FAVORITED, ARTICLE_UNFAVORITED } from "constants/actionTypes"
 import { TagsList, Title, Text, Button } from "../UI"
-import { ArticleMeta } from "../UI/ArticleMeta"
+import { ArticleMeta } from "../UI"
 import style from "./ArticlePreview.module.scss"
-import { LikeButton } from "../UI/Buttons/LikeButton"
+import { LikeButton } from "../UI"
 import { ROUTES } from "constants/routes"
 import PropTypes from "prop-types"
 import { article, user } from "constants/types"
@@ -28,7 +28,7 @@ const mapDispatchToProps = (dispatch) => ({
 		}),
 })
 
-const ArticlePreview = ({ article, currentUser, image, unfavorite, favorite }) => {
+const ArticlePreview = ({ article, currentUser, unfavorite, favorite }) => {
 	const handleFavouriteClick = (ev) => {
 		ev.preventDefault()
 		if (!currentUser) return window.location.replace(ROUTES.LOGIN)

@@ -1,7 +1,7 @@
 import React from "react"
 import { Text } from "../UI"
-import { ArticleMeta } from "../UI/ArticleMeta"
-import DeleteButton from "../UI/Buttons/DeleteButton"
+import { ArticleMeta } from "../UI"
+import { DeleteButton } from "../UI"
 import style from "./Comment.module.scss"
 import PropTypes from "prop-types"
 import { comment, user } from "constants/types"
@@ -13,7 +13,7 @@ const Comment = ({ comment, currentUser, slug, type, children }) => {
 			<div className={style.top}>{type === "input" ? children : <Text color="secondary">{comment.body}</Text>}</div>
 			<div className={style.footer}>
 				<ArticleMeta image={comment.author.image} username={comment.author.username} createdAt={comment.createdAt}>
-					<DeleteButton show={show} slug={slug} commentId={comment.id} />
+					{show && <DeleteButton slug={slug} commentId={comment.id} />}
 				</ArticleMeta>
 			</div>
 		</div>
@@ -24,7 +24,7 @@ export default Comment
 
 Comment.propTypes = {
 	comment: comment.isRequired,
-	currentUser: user.isRequired,
+	currentUser: user,
 	slug: PropTypes.string.isRequired,
 	type: PropTypes.string,
 	children: PropTypes.element,

@@ -7,11 +7,13 @@ import Banner from "components/Banner"
 import MainView from "components/MainView"
 import style from "./Home.module.scss"
 import PropTypes from "prop-types"
+import { article } from "constants/types"
 
 const mapStateToProps = (state) => ({
 	...state.home,
 	appName: state.common.appName,
 	token: state.common.token,
+	articleList: state.articleList,
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -20,13 +22,15 @@ const mapDispatchToProps = (dispatch) => ({
 	onUnload: () => dispatch({ type: HOME_PAGE_UNLOADED }),
 })
 
-const Home = ({ token, onLoad, onUnload, tags, onClickTag }) => {
+const Home = ({ token, onLoad, onUnload, tags, onClickTag, articleList }) => {
 	useEffect(() => {
 		const tab = token ? "feed" : "all"
 		const articlesPromise = token ? agent.Articles.feed : agent.Articles.all
 		onLoad(tab, articlesPromise, Promise.all([agent.Tags.getAll(), articlesPromise()]))
 
-		return () => { onUnload() }
+		return () => {
+			onUnload()
+		}
 	}, [])
 
 	return (
@@ -38,7 +42,7 @@ const Home = ({ token, onLoad, onUnload, tags, onClickTag }) => {
 					<TagsList tags={tags} onClickTag={onClickTag} />
 				</Sidebar>
 			</div>
-			<Pagination />
+			{articleList && articleList.articlesCount > 10 && <Pagination />}
 		</div>
 	)
 }
@@ -46,6 +50,7 @@ const Home = ({ token, onLoad, onUnload, tags, onClickTag }) => {
 export default connect(mapStateToProps, mapDispatchToProps)(Home)
 
 Home.Article = {
+	articleList: PropTypes.arrayOf(article.isRequired),
 	token: PropTypes.string.isRequired,
 	onLoad: PropTypes.func.isRequired,
 	onUnload: PropTypes.func.isRequired,

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import { AuthorDate } from "../AuthorDate"
 import { Avatar } from "components/Icons/Avatar"
 
-export function ArticleMeta({ image, username, createdAt, children }) {
+export const ArticleMeta = ({ image, username, createdAt, children }) => {
 	return (
 		<div className={style.meta}>
 			<div className={style.left}>
@@ -19,8 +19,8 @@ export function ArticleMeta({ image, username, createdAt, children }) {
 }
 
 ArticleMeta.propTypes = {
-	image: PropTypes.string.isRequired,
-	username: PropTypes.string.isRequired,
+	image: PropTypes.string,
+	username: PropTypes.string,
 	createdAt: PropTypes.string,
 	children: PropTypes.node,
 }

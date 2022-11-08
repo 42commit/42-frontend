@@ -7,9 +7,9 @@ import { comment, user } from "constants/types"
 const CommentList = ({ comments, currentUser, slug }) => {
 	return (
 		<div className={style.list}>
-			{comments.map((comment) => {
-				return <Comment comment={comment} currentUser={currentUser} slug={slug} key={comment.id} />
-			})}
+			{comments.map((comment) => (
+				<Comment comment={comment} currentUser={currentUser} slug={slug} key={comment.id} />
+			))}
 		</div>
 	)
 }
@@ -18,6 +18,6 @@ export default CommentList
 
 CommentList.propTypes = {
 	currentUser: user,
-	slug: PropTypes.string.isRequired,
-	comments: PropTypes.arrayOf(comment.isRequired)
+	slug: PropTypes.string,
+	comments: PropTypes.arrayOf(comment),
 }

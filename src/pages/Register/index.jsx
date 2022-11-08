@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import agent from "services/agent"
 import { connect } from "react-redux"
 import { UPDATE_FIELD_AUTH, REGISTER, REGISTER_PAGE_UNLOADED } from "constants/actionTypes"
-import { Input } from "components/UI/Input"
+import { Input } from "components/UI"
 import FormWrapper from "components/FormWrapper"
 import Form from "components/Form"
 import { ROUTES } from "constants/routes"
@@ -31,7 +31,7 @@ const Register = ({ onSubmit, onUnload, errors, inProgress }) => {
 
 	useEffect(() => {
 		return () => {
-			onUnload();
+			onUnload()
 		}
 	}, [])
 
@@ -46,8 +46,13 @@ const Register = ({ onSubmit, onUnload, errors, inProgress }) => {
 
 	return (
 		<div className={style.wrapper}>
-			<FormWrapper title='Зарегистрироваться' link={ROUTES.LOGIN} linkName='Уже есть аккаунт?'>
-				<Form button='Зарегистрироваться' onSubmit={submitForm(values.username, values.email, values.password)} disabled={inProgress} errors={errors}>
+			<FormWrapper title="Зарегистрироваться" link={ROUTES.LOGIN} linkName="Уже есть аккаунт?">
+				<Form
+					button="Зарегистрироваться"
+					onSubmit={submitForm(values.username, values.email, values.password)}
+					disabled={inProgress}
+					errors={errors}
+				>
 					<Input
 						name="username"
 						label="Имя пользователя"

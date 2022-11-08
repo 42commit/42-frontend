@@ -1,10 +1,10 @@
 import { Title } from "components/UI"
-import FollowUserButton from "components/UI/Buttons/FollowUserButton"
+import { FollowUserButton } from "components/UI"
 import { connect } from "react-redux"
 import PropTypes from "prop-types"
 import React from "react"
 import style from "./Banner.module.scss"
-import { ArticleMeta } from "components/UI/ArticleMeta"
+import { ArticleMeta } from "components/UI"
 import ArticleActions from "components/Article/ArticleActions"
 import { Avatar } from "components/Icons/Avatar"
 import { article, user } from "constants/types"
@@ -18,17 +18,17 @@ const mapStateToProps = (state) => {
 	}
 }
 
-const Article = connect(mapStateToProps)(({ article }) => {
+const Article = connect(mapStateToProps)(({ article, currentUser }) => {
+	const canModify = currentUser && currentUser.username === article.author.username
 	return (
 		<div className={style.articleWrapper}>
 			<ArticleMeta image={article.author.image} username={article.author.username} createdAt={article.createdAt} />
-			<ArticleActions />
+			{canModify && <ArticleActions />}
 		</div>
 	)
 })
 
-const User = connect(mapStateToProps)(({ profile }) => {
-	if (!profile?.username) return null
+const User = connect(mapStateToProps)(({ profile, currentUser }) => {
 	return (
 		<div className={style.userWrapper}>
 			<figure>
@@ -37,9 +37,11 @@ const User = connect(mapStateToProps)(({ profile }) => {
 					<Title type={3}>{profile.username}</Title>
 				</figcaption>
 			</figure>
-			<div className={style.button}>
-				<FollowUserButton />
-			</div>
+			{currentUser && profile.username !== currentUser.username && (
+				<div className={style.button}>
+					<FollowUserButton />
+				</div>
+			)}
 		</div>
 	)
 })
@@ -77,6 +79,7 @@ App.propTypes = {
 
 User.propTypes = {
 	profile: user,
+	currentUser: user,
 }
 
 Article.propTypes = {

@@ -9,10 +9,10 @@ import ArticleList from "components/ArticleList"
 import { ROUTES } from "constants/routes"
 import PropTypes from "prop-types"
 import { article, user } from "constants/types"
+import { Loader } from "components/UI"
 
 const mapStateToProps = (state) => ({
 	...state.articleList,
-	currentUser: state.common.currentUser,
 	profile: state.profile,
 })
 
@@ -86,26 +86,29 @@ const ProfileFavorites = ({
 
 	const getPaginationRequestFavoritedBy = (username) => (page) => agent.Articles.favoritedBy(username, page)
 
-	return (
-		<div className={style.wrapper}>
-			<Banner variant="user" />
-			<div className={style.main}>
-				<div className={style.articles}>
-					<TabList tabs={tabs} tagsOff />
-					<ArticleList
-						pager={pager}
-						articles={filteredArticles(selectedTag)}
-						articlesCount={articlesCount}
-						currentPage={currentPage}
-					/>
+	if (profile.username) {
+		return (
+			<div className={style.wrapper}>
+				<Banner variant="user" />
+				<div className={style.main}>
+					<div className={style.articles}>
+						<TabList tabs={tabs} tagsOff />
+						<ArticleList
+							pager={pager}
+							articles={filteredArticles(selectedTag)}
+							articlesCount={articlesCount}
+							currentPage={currentPage}
+						/>
+					</div>
+					<Sidebar>
+						<TagsList tags={getUserTag} onClickTag={clickTagHandler} />
+					</Sidebar>
 				</div>
-				<Sidebar>
-					<TagsList tags={getUserTag} onClickTag={clickTagHandler} />
-				</Sidebar>
+				{articlesCount > 5 && <Pagination request={getPaginationRequestFavoritedBy(profile.username)} />}
 			</div>
-			<Pagination request={getPaginationRequestFavoritedBy(profile.username)} />
-		</div>
-	)
+		)
+	}
+	return <Loader />
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileFavorites)

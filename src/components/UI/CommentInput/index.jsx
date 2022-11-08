@@ -21,7 +21,10 @@ const mapDispatchToProps = (dispatch) => ({
 	onUnload: () => dispatch({ type: PROFILE_PAGE_UNLOADED }),
 })
 
-const CommentInput = ({ onSubmit, onLoad, onUnload, slug, currentUser, profile }) => {
+export const CommentInput = connect(
+	mapStateToProps,
+	mapDispatchToProps,
+)(({ onSubmit, onLoad, onUnload, slug, currentUser, profile }) => {
 	const [body, setBody] = useState("")
 	const bodyHandler = (e) => {
 		setBody(e.currentTarget.value)
@@ -38,7 +41,6 @@ const CommentInput = ({ onSubmit, onLoad, onUnload, slug, currentUser, profile }
 		}
 	}, [onLoad])
 
-	if (!profile.image && !profile.username) return null
 	return (
 		<form className={style.card} onSubmit={createComment}>
 			<div className={style.top}>
@@ -53,15 +55,13 @@ const CommentInput = ({ onSubmit, onLoad, onUnload, slug, currentUser, profile }
 			</div>
 		</form>
 	)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CommentInput)
+})
 
 CommentInput.propTypes = {
-	currentUser: user.isRequired,
-	profile: user.isRequired,
-	slug: PropTypes.string.isRequired,
-	onSubmit: PropTypes.func.isRequired,
-	onLoad: PropTypes.func.isRequired,
-	onUnload: PropTypes.func.isRequired,
+	currentUser: user,
+	profile: user,
+	slug: PropTypes.string,
+	onSubmit: PropTypes.func,
+	onLoad: PropTypes.func,
+	onUnload: PropTypes.func,
 }

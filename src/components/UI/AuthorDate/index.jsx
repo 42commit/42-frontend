@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import { Link } from "react-router-dom"
 import { Text } from "../Typography/Text"
 
-export function AuthorDate({ username, createdAt }) {
+export const AuthorDate = ({ username, createdAt }) => {
 	const options = {
 		year: "numeric",
 		month: "long",
@@ -26,6 +26,6 @@ export function AuthorDate({ username, createdAt }) {
 }
 
 AuthorDate.propTypes = {
-	username: PropTypes.string.isRequired,
+	username: PropTypes.string,
 	createdAt: PropTypes.string,
 }

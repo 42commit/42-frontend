@@ -6,6 +6,7 @@ import { connect } from "react-redux"
 import { CHANGE_TAB } from "constants/actionTypes"
 import PropTypes from "prop-types"
 import { Text } from ".."
+import { ROUTES } from "constants/routes"
 
 const mapStateToProps = (state) => ({ tab: state.articleList.tab })
 
@@ -13,7 +14,7 @@ const mapDispatchToProps = (dispatch) => ({
 	onTabClick: (tab, pager, payload) => dispatch({ type: CHANGE_TAB, tab, pager, payload }),
 })
 
-export function Tab({ onTabClick, eventKey, title, tab, route = "/" }) {
+export const Tab = ({ onTabClick, eventKey, title, tab, route = ROUTES.HOME }) => {
 	const [active, setActive] = useState(eventKey === tab)
 	const className = `${style.tab} ${active ? style.active : style.inactive}`
 

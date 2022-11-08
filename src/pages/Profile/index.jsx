@@ -14,10 +14,10 @@ import Banner from "components/Banner"
 import style from "./Profile.module.scss"
 import PropTypes from "prop-types"
 import { article, user } from "constants/types"
+import { Loader } from "components/UI"
 
 const mapStateToProps = (state) => ({
 	...state.articleList,
-	currentUser: state.common.currentUser,
 	profile: state.profile,
 })
 
@@ -90,26 +90,29 @@ const Profile = ({ onLoad, onUnload, profile, articles, articlesCount, currentPa
 
 	const getPaginationRequestByAuthor = (username) => (page) => agent.Articles.byAuthor(username, page)
 
-	return (
-		<div className={style.wrapper}>
-			<Banner variant="user" />
-			<div className={style.main}>
-				<div className={style.articles}>
-					<TabList tabs={tabs} tagsOff />
-					<ArticleList
-						pager={pager}
-						articles={filteredArticles(selectedTag)}
-						articlesCount={articlesCount}
-						currentPage={currentPage}
-					/>
+	if (profile.username) {
+		return (
+			<div className={style.wrapper}>
+				<Banner variant="user" />
+				<div className={style.main}>
+					<div className={style.articles}>
+						<TabList tabs={tabs} tagsOff />
+						<ArticleList
+							pager={pager}
+							articles={filteredArticles(selectedTag)}
+							articlesCount={articlesCount}
+							currentPage={currentPage}
+						/>
+					</div>
+					<Sidebar>
+						<TagsList tags={getUserTag} onClickTag={clickTagHandler} />
+					</Sidebar>
 				</div>
-				<Sidebar>
-					<TagsList tags={getUserTag} onClickTag={clickTagHandler} />
-				</Sidebar>
+				{articlesCount > 5 && <Pagination request={getPaginationRequestByAuthor(profile.username)} />}
 			</div>
-			<Pagination request={getPaginationRequestByAuthor(profile.username)} />
-		</div>
-	)
+		)
+	}
+	return <Loader />
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile)

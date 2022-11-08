@@ -9,12 +9,14 @@ import {
 	EDITOR_PAGE_UNLOADED,
 	UPDATE_FIELD_EDITOR,
 } from "constants/actionTypes"
-import { Input } from "components/UI/Input"
+import { Input } from "components/UI"
 import style from "./Editor.module.scss"
 import { Tag } from "components/UI"
 import FormWrapper from "components/FormWrapper"
 import Form from "components/Form"
 import PropTypes from "prop-types"
+import { Loader } from "components/UI"
+import { ROUTES } from "constants/routes"
 
 const mapStateToProps = (state) => ({
 	...state.editor,
@@ -48,7 +50,7 @@ const EditorComponent = ({
 	articleSlug,
 	appLoaded,
 }) => {
-	if (!appLoaded) return null
+	if (!appLoaded) return <Loader />
 
 	const changeHandler = (e) => {
 		onUpdateField(e.target.name, e.target.value)
@@ -94,7 +96,7 @@ const EditorComponent = ({
 
 	return (
 		<div className={style.wrapper}>
-			<FormWrapper title="Новая запись">
+			<FormWrapper title={window.location.pathname === ROUTES.EDITOR ? "Новая запись" : "Редактирование"}>
 				<Form button="Опубликовать" onClick={submitFormHandler} disabled={inProgress} errors={errors}>
 					<Input name="title" label="Заголовок" placeholder="Название статьи" value={title} onChange={changeHandler} />
 					<Input
@@ -121,9 +123,9 @@ const EditorComponent = ({
 						onKeyUp={watchTags}
 					/>
 					<div className={style.taglist}>
-						{(tagList || []).map((tag) => {
-							return <Tag tag={tag} key={tag} handleClick={() => onRemoveTag(tag)} />
-						})}
+						{(tagList || []).map((tag) => (
+							<Tag tag={tag} key={tag} handleClick={() => onRemoveTag(tag)} />
+						))}
 					</div>
 				</Form>
 			</FormWrapper>

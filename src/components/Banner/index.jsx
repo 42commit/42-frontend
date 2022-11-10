@@ -28,7 +28,7 @@ const Article = connect(mapStateToProps)(({ article }) => {
 })
 
 const User = connect(mapStateToProps)(({ profile }) => {
-	console.log('profile', profile);
+	console.log("profile", profile)
 	if (!profile?.username) return null
 	return (
 		<div className={styles.userWrapper}>
@@ -46,7 +46,6 @@ const User = connect(mapStateToProps)(({ profile }) => {
 })
 
 const App = connect(mapStateToProps)(({ appName }) => {
-
 	return (
 		<div className={styles.titleWrapper}>
 			<Title type={1} shadow>
@@ -58,7 +57,6 @@ const App = connect(mapStateToProps)(({ appName }) => {
 })
 
 const Banner = ({ variant }) => {
-
 	const bannerVariants = {
 		app: App,
 		user: User,

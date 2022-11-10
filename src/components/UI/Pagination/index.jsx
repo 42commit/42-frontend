@@ -17,10 +17,7 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 const PaginationComponent = ({ articleList, onSetPage, request = agent.Articles.all }) => {
-	if (!articleList.articlesCount) return null
-	const { articlesCount, currentPage, pager, tab } = articleList
-	if (tab === 'feed') return null
-	if (articlesCount <= 10) return null
+	const { articlesCount, currentPage, pager } = articleList
 	const range = []
 	for (let i = 0; i < Math.ceil(articlesCount / 10); ++i) range.push(i)
 	const startPage = useMemo(
@@ -49,6 +46,7 @@ const PaginationComponent = ({ articleList, onSetPage, request = agent.Articles.
 		ev.preventDefault()
 		if (currentPage < range.length - 1) setPage(currentPage + 1)
 	}
+
 	return (
 		<ul className={style.pagination}>
 			<PageLink
@@ -61,26 +59,28 @@ const PaginationComponent = ({ articleList, onSetPage, request = agent.Articles.
 			>
 				1
 			</PageLink>
-			<PageLink isCurrent={false} onClick={onPrevClick}>
-				<ArrowIcon side="left" />
-			</PageLink>
-			{arr.map((num) => {
-				return (
-					<PageLink
-						isCurrent={num === currentPage}
-						onClick={(ev) => {
-							ev.preventDefault()
-							setPage(num)
-						}}
-						key={num.toString()}
-					>
-						{num + 1}
-					</PageLink>
-				)
-			})}
-			<PageLink isCurrent={false} onClick={onNextClick}>
-				<ArrowIcon side="right" />
-			</PageLink>
+			{range.length > 7 && (
+				<PageLink isCurrent={false} onClick={onPrevClick}>
+					<ArrowIcon side="left" />
+				</PageLink>
+			)}
+			{arr.map((num) => (
+				<PageLink
+					isCurrent={num === currentPage}
+					onClick={(ev) => {
+						ev.preventDefault()
+						setPage(num)
+					}}
+					key={num.toString()}
+				>
+					{num + 1}
+				</PageLink>
+			))}
+			{range.length > 7 && (
+				<PageLink isCurrent={false} onClick={onNextClick}>
+					<ArrowIcon side="right" />
+				</PageLink>
+			)}
 			<PageLink
 				isCurrent={currentPage === range.length - 1}
 				onClick={(ev) => {
@@ -100,5 +100,5 @@ export const Pagination = connect(mapStateToProps, mapDispatchToProps)(Paginatio
 PageLink.propTypes = {
 	articleList: PropTypes.arrayOf(article.isRequired),
 	onSetPage: PropTypes.func,
-	request: PropTypes.func
+	request: PropTypes.func,
 }

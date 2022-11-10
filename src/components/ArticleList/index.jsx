@@ -4,11 +4,17 @@ import style from "./ArticleList.module.scss"
 import { Text } from "../UI"
 import PropTypes from "prop-types"
 import { article } from "constants/types"
+import { Loader } from "components/UI"
 
 const ArticleList = ({ articles }) => {
-	if (!articles) return <div>Loading...</div>
+	if (!articles) return <Loader />
 
-	if (articles.length === 0) return <div className={style.main}><Text>Здесь пусто... пока что.</Text></div>
+	if (articles.length === 0)
+		return (
+			<div className={style.main}>
+				<Text>Здесь пусто... пока что.</Text>
+			</div>
+		)
 
 	return (
 		<div className={style.articles}>
@@ -22,5 +28,5 @@ const ArticleList = ({ articles }) => {
 export default ArticleList
 
 ArticleList.propTypes = {
-	articles: PropTypes.arrayOf(article.isRequired)
+	articles: PropTypes.arrayOf(article.isRequired),
 }

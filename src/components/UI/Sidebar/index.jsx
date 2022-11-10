@@ -2,7 +2,7 @@ import style from "./Sidebar.module.scss"
 import PropTypes from "prop-types"
 import { Text } from ".."
 
-export function Sidebar({ children }) {
+export const Sidebar = ({ children }) => {
 	return (
 		<div className={style.sidebar}>
 			<Text>Популярные теги</Text>

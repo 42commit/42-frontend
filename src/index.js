@@ -5,8 +5,8 @@ import { store, history } from "./services/store"
 
 import { Route, Switch } from "react-router-dom"
 import { ConnectedRouter } from "react-router-redux"
-import './assets/style/global.scss'
-import App from "./components/App/App"
+import "./assets/style/global.scss"
+import App from "./App"
 
 ReactDOM.render(
 	<Provider store={store}>

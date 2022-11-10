@@ -3,21 +3,12 @@
 	gap: 16px;
 	padding: 32px 0;
 	max-width: calc(100vw - 350px);
-	border-bottom: 2px solid var(--divider-color);
-
-	.img {
-		width: 160px;
-		height: 228px;
-		background-color: var(--input-color);
-		border-radius: 20px;
-		flex-shrink: 0;
-	}
+	border-bottom: var(--border);
 	.content__wrapper {
 		display: flex;
 		flex-direction: column;
 		gap: 16px;
 		flex: 1;
-
 		.article {
 			display: flex;
 			flex-direction: column;
@@ -26,10 +17,10 @@
 		.footer {
 			display: flex;
 			justify-content: space-between;
+			align-items: flex-end;
 			gap: 64px;
 			padding-right: 8px;
 			.link {
-				text-decoration: none;
 				flex-shrink: 0;
 			}
 			@media screen and (max-width: 768px) {

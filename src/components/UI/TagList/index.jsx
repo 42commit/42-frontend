@@ -1,30 +1,29 @@
-import style from './TagList.module.scss';
-import agent from 'services/agent';
-import PropTypes from 'prop-types';
-import { Tag } from "../Tag";
+import style from "./TagList.module.scss"
+import agent from "services/agent"
+import PropTypes from "prop-types"
+import { Tag } from "../Tag"
+import { Loader } from "../Loader"
 
-export function TagsList({ tags, onClickTag }) {
-
-    if (tags)
-        return (
-            <ul className={style.tags__list}>
-                {tags.map((tag, index) => {
-                    const handleClick = (ev) => {
-                        if (onClickTag) {
-                            ev.preventDefault()
-                            onClickTag(tag, (page) => agent.Articles.byTag(tag, page), agent.Articles.byTag(tag))
-                        }
-                    }
-                    return (
-                        <Tag key={index} tag={tag} handleClick={handleClick} />
-                    )
-                })}
-            </ul>
-        );
-    else return <div>Загрузка...</div>
+export const TagsList = ({ tags, onClickTag }) => {
+	if (tags) {
+		const handleClick = (ev, tag) => {
+			if (onClickTag) {
+				ev.preventDefault()
+				onClickTag(tag, (page) => agent.Articles.byTag(tag, page), agent.Articles.byTag(tag))
+			}
+		}
+		return (
+			<ul className={style.tags__list}>
+				{tags.map((tag, index) => (
+					<Tag key={index} tag={tag} handleClick={(ev) => handleClick(ev, tag)} />
+				))}
+			</ul>
+		)
+	}
+	return <Loader />
 }
 
 TagsList.propTypes = {
-    tags: PropTypes.arrayOf(PropTypes.string.isRequired),
-    onClickTag: PropTypes.func
-};
+	tags: PropTypes.arrayOf(PropTypes.string.isRequired),
+	onClickTag: PropTypes.func,
+}

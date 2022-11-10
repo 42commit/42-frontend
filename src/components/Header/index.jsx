@@ -1,7 +1,7 @@
 import { Button, Title } from "components/UI"
 import React from "react"
 import { Link, NavLink } from "react-router-dom"
-import styles from "./Header.module.scss"
+import style from "./Header.module.scss"
 import { EditIcon, HomeIcon, LoginIcon, SettingsIcon } from "../Icons"
 import { connect } from "react-redux"
 import { Avatar } from "components/Icons/Avatar"
@@ -18,10 +18,7 @@ const mapStateToProps = (state) => {
 
 const CustomLink = connect(mapStateToProps)(({ to, children, icon, pathname }) => {
 	return (
-		<NavLink
-			className={styles.navLink}
-			to={to}
-		>
+		<NavLink className={style.navLink} to={to}>
 			<Button type="light" active={pathname === to}>
 				{icon}
 				<span>{children}</span>
@@ -67,16 +64,14 @@ const LoggedInView = connect(mapStateToProps)(({ currentUser }) => {
 
 const Header = ({ appName, currentUser }) => {
 	return (
-		<header className={styles.header}>
-			<div className={styles.container}>
-				<Link className={styles.brand} to={ROUTES.HOME}>
+		<header className={style.header}>
+			<div className={style.container}>
+				<Link className={style.brand} to={ROUTES.HOME}>
 					<Title type={3} shadow>
 						{appName}
 					</Title>
 				</Link>
-				<div className={styles.navLinks}>
-					{currentUser ? <LoggedInView /> : <LoggedOutView />}
-				</div>
+				<div className={style.navLinks}>{currentUser ? <LoggedInView /> : <LoggedOutView />}</div>
 			</div>
 		</header>
 	)
@@ -92,7 +87,7 @@ CustomLink.propTypes = {
 }
 
 LoggedInView.propTypes = {
-	currentUser: user
+	currentUser: user,
 }
 
 Header.propTypes = {

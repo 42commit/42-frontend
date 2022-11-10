@@ -2,14 +2,16 @@ import React, { useEffect, useState } from "react"
 import agent from "services/agent"
 import { connect } from "react-redux"
 import { SETTINGS_SAVED, SETTINGS_PAGE_UNLOADED, LOGOUT } from "constants/actionTypes"
-import { Input } from "components/UI/Input"
+import { Input } from "components/UI"
 import { Button } from "components/UI"
-import styles from "./Settings.module.scss"
+import style from "./Settings.module.scss"
 import FormWrapper from "components/FormWrapper"
 import Form from "components/Form"
-import AvatarChanger from "components/UI/AvatarChanger"
+import { AvatarChanger } from "components/UI"
 import PropTypes from "prop-types"
 import { user } from "constants/types"
+import { Loader } from "components/UI"
+import { ROUTES } from "constants/routes"
 
 const mapStateToProps = (state) => ({
 	...state.settings,
@@ -38,7 +40,7 @@ const Settings = ({ onSubmitForm, inProgress, currentUser, errors, onClickLogout
 	})
 
 	useEffect(() => {
-		if (!currentUser) return
+		if (!currentUser) window.location.pathname = ROUTES.LOGIN
 		const { image = "", username = "", bio = "", email = "", password = "" } = currentUser
 		setValues({
 			image,
@@ -58,50 +60,53 @@ const Settings = ({ onSubmitForm, inProgress, currentUser, errors, onClickLogout
 
 	const submitFormHandler = (e) => {
 		e.preventDefault()
-
 		const user = { ...values }
 		if (!user.password) delete user.password
 		onSubmitForm(user)
 	}
 	return (
-		<div className={styles.wrapper}>
-			<FormWrapper title='Ваши настройки'>
-				<Form button='Сохранить' onSubmit={submitFormHandler} disabled={inProgress} errors={errors}>
-					<AvatarChanger avatar={values.image} setAvatar={setAvatar} />
-					<Input
-						name="username"
-						label="Имя пользователя"
-						placeholder="Введите ваше имя"
-						value={values.username}
-						onChange={changeHandler}
-					/>
-					<Input
-						name="bio"
-						label="Информация о вас"
-						placeholder="Расскажите немного о себе"
-						type="textarea"
-						value={values.bio}
-						onChange={changeHandler}
-					/>
-					<Input
-						name="email"
-						label="E-mail"
-						type="email"
-						placeholder="Введите почту"
-						value={values.email}
-						onChange={changeHandler}
-					/>
-					<Input
-						name="password"
-						label="Новый пароль"
-						type="password"
-						placeholder="Введите ваш новый пароль"
-						value={values.password}
-						onChange={changeHandler}
-					/>
-				</Form>
+		<div className={style.wrapper}>
+			<FormWrapper title="Ваши настройки">
+				{values.username ? (
+					<Form button="Сохранить" onSubmit={submitFormHandler} disabled={inProgress} errors={errors}>
+						<AvatarChanger avatar={values.image} setAvatar={setAvatar} />
+						<Input
+							name="username"
+							label="Имя пользователя"
+							placeholder="Введите ваше имя"
+							value={values.username}
+							onChange={changeHandler}
+						/>
+						<Input
+							name="bio"
+							label="Информация о вас"
+							placeholder="Расскажите немного о себе"
+							type="textarea"
+							value={values.bio}
+							onChange={changeHandler}
+						/>
+						<Input
+							name="email"
+							label="E-mail"
+							type="email"
+							placeholder="Введите почту"
+							value={values.email}
+							onChange={changeHandler}
+						/>
+						<Input
+							name="password"
+							label="Новый пароль"
+							type="password"
+							placeholder="Введите ваш новый пароль"
+							value={values.password}
+							onChange={changeHandler}
+						/>
+					</Form>
+				) : (
+					<Loader />
+				)}
 			</FormWrapper>
-			<div className={styles.logout}>
+			<div className={style.logout}>
 				<Button type="delete" onClick={onClickLogout}>
 					Выйти из аккаунта
 				</Button>

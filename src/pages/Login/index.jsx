@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react"
 import agent from "services/agent"
 import { connect } from "react-redux"
 import { UPDATE_FIELD_AUTH, LOGIN, LOGIN_PAGE_UNLOADED } from "constants/actionTypes"
-import { Input } from "components/UI/Input"
+import { Input } from "components/UI"
 import FormWrapper from "components/FormWrapper"
 import Form from "components/Form"
 import PropTypes from "prop-types"
+import style from "./Login.module.scss"
 
 const mapStateToProps = (state) => ({ ...state.auth })
 
@@ -37,26 +38,28 @@ const Login = ({ onSubmit, onUnload, errors, inProgress }) => {
 		}
 	}, [])
 	return (
-		<FormWrapper title='Войти' link='/register' linkName='Хотите создать аккаунт?'>
-			<Form button='Войти' onSubmit={submitForm(values.email, values.password)} disabled={inProgress} errors={errors}>
-				<Input
-					name="email"
-					label="E-mail"
-					type="email"
-					placeholder="E-mail"
-					value={values.email}
-					onChange={onChange}
-				/>
-				<Input
-					name="password"
-					label="Пароль"
-					type="password"
-					placeholder="Пароль"
-					value={values.password}
-					onChange={onChange}
-				/>
-			</Form>
-		</FormWrapper>
+		<div className={style.wrapper}>
+			<FormWrapper title="Войти" link="/register" linkName="Хотите создать аккаунт?">
+				<Form button="Войти" onSubmit={submitForm(values.email, values.password)} disabled={inProgress} errors={errors}>
+					<Input
+						name="email"
+						label="E-mail"
+						type="email"
+						placeholder="E-mail"
+						value={values.email}
+						onChange={onChange}
+					/>
+					<Input
+						name="password"
+						label="Пароль"
+						type="password"
+						placeholder="Пароль"
+						value={values.password}
+						onChange={onChange}
+					/>
+				</Form>
+			</FormWrapper>
+		</div>
 	)
 }
 

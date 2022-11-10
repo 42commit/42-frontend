@@ -9,13 +9,10 @@ import {
 	EDITOR_PAGE_UNLOADED,
 	UPDATE_FIELD_EDITOR,
 } from "constants/actionTypes"
-import { Input } from "components/UI"
+import { Input, Tag, Loader } from "components/UI"
 import style from "./Editor.module.scss"
-import { Tag } from "components/UI"
-import FormWrapper from "components/FormWrapper"
-import Form from "components/Form"
+import { Form, FormWrapper } from "components"
 import PropTypes from "prop-types"
-import { Loader } from "components/UI"
 import { ROUTES } from "constants/routes"
 
 const mapStateToProps = (state) => ({

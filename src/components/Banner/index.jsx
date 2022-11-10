@@ -1,11 +1,9 @@
-import { Title } from "components/UI"
-import { FollowUserButton } from "components/UI"
+import { Title, FollowUserButton, ArticleMeta } from "components/UI"
 import { connect } from "react-redux"
 import PropTypes from "prop-types"
 import React from "react"
 import style from "./Banner.module.scss"
-import { ArticleMeta } from "components/UI"
-import ArticleActions from "components/Article/ArticleActions"
+import { ArticleActions } from "components"
 import { Avatar } from "components/Icons/Avatar"
 import { article, user } from "constants/types"
 

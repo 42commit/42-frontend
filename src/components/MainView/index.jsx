@@ -1,4 +1,4 @@
-import ArticleList from "components/ArticleList"
+import { ArticleList } from "components"
 import { TabList } from "components/UI"
 import React from "react"
 import { connect } from "react-redux"

@@ -1,15 +1,13 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react"
+import React, { useEffect } from "react"
 import { connect } from "react-redux"
 import { APPLY_TAG_FILTER, PROFILE_PAGE_LOADED, PROFILE_PAGE_UNLOADED } from "constants/actionTypes"
 import agent from "services/agent"
-import Banner from "components/Banner"
-import { Pagination, Sidebar, TabList, TagsList } from "components/UI"
+import { Banner, ArticleList } from "components"
+import { Pagination, TabList, Loader } from "components/UI"
 import style from "./ProfileFavorites.module.scss"
-import ArticleList from "components/ArticleList"
 import { ROUTES } from "constants/routes"
 import PropTypes from "prop-types"
 import { article, user } from "constants/types"
-import { Loader } from "components/UI"
 
 const mapStateToProps = (state) => ({
 	...state.articleList,
@@ -22,18 +20,7 @@ const mapDispatchToProps = (dispatch) => ({
 	onClickTag: (tag, pager, payload) => dispatch({ type: APPLY_TAG_FILTER, tag, pager, payload }),
 })
 
-const ProfileFavorites = ({
-	onLoad,
-	onUnload,
-	match,
-	pager,
-	articles,
-	articlesCount,
-	onClickTag,
-	profile,
-	currentPage,
-}) => {
-	const [selectedTag, setSelectedTag] = useState()
+const ProfileFavorites = ({ onLoad, onUnload, match, pager, articles, articlesCount, profile, currentPage }) => {
 	useEffect(() => {
 		onLoad(
 			Promise.all([
@@ -47,16 +34,6 @@ const ProfileFavorites = ({
 		}
 	}, [])
 
-	const clickTagHandler = (tag) => {
-		if (selectedTag === tag) {
-			setSelectedTag(null)
-			onClickTag(null, pager, { articles, articlesCount })
-		} else {
-			setSelectedTag(tag)
-			onClickTag(tag, pager, { articles, articlesCount })
-		}
-	}
-
 	const tabs = [
 		{
 			title: "Ваши посты",
@@ -68,22 +45,6 @@ const ProfileFavorites = ({
 		},
 	]
 
-	const getUserTag = useMemo(() => {
-		if (!profile.tags) return []
-		return profile.tags.filter((t) => {
-			return articles.find((a) => a.tagList.find((at) => at === t))
-		})
-	}, [articles])
-
-	const filteredArticles = useCallback(
-		(selectedTag) => {
-			if (!articles) return []
-			if (!selectedTag) return articles
-			return articles.filter((article) => article.tagList.find((articleTag) => articleTag === selectedTag))
-		},
-		[articles],
-	)
-
 	const getPaginationRequestFavoritedBy = (username) => (page) => agent.Articles.favoritedBy(username, page)
 
 	if (profile.username) {
@@ -91,18 +52,8 @@ const ProfileFavorites = ({
 			<div className={style.wrapper}>
 				<Banner variant="user" />
 				<div className={style.main}>
-					<div className={style.articles}>
-						<TabList tabs={tabs} tagsOff />
-						<ArticleList
-							pager={pager}
-							articles={filteredArticles(selectedTag)}
-							articlesCount={articlesCount}
-							currentPage={currentPage}
-						/>
-					</div>
-					<Sidebar>
-						<TagsList tags={getUserTag} onClickTag={clickTagHandler} />
-					</Sidebar>
+					<TabList tabs={tabs} tagsOff />
+					<ArticleList pager={pager} articles={articles} articlesCount={articlesCount} currentPage={currentPage} />
 				</div>
 				{articlesCount > 5 && <Pagination request={getPaginationRequestFavoritedBy(profile.username)} />}
 			</div>

@@ -98,13 +98,21 @@ const EditorComponent = ({
 		<div className={style.wrapper}>
 			<FormWrapper title={window.location.pathname === ROUTES.EDITOR ? "Новая запись" : "Редактирование"}>
 				<Form button="Опубликовать" onClick={submitFormHandler} disabled={inProgress} errors={errors}>
-					<Input name="title" label="Заголовок" placeholder="Название статьи" value={title} onChange={changeHandler} />
+					<Input
+						name="title"
+						label="Заголовок"
+						placeholder="Название статьи"
+						value={title}
+						onChange={changeHandler}
+						isRequired
+					/>
 					<Input
 						name="description"
 						label="Описание"
 						placeholder="О чем статья"
 						value={description}
 						onChange={changeHandler}
+						isRequired
 					/>
 					<Input
 						name="body"
@@ -113,6 +121,7 @@ const EditorComponent = ({
 						type="textarea"
 						value={body}
 						onChange={changeHandler}
+						isRequired
 					/>
 					<Input
 						name="tagInput"

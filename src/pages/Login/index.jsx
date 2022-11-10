@@ -48,6 +48,7 @@ const Login = ({ onSubmit, onUnload, errors, inProgress }) => {
 						placeholder="E-mail"
 						value={values.email}
 						onChange={onChange}
+						isRequired
 					/>
 					<Input
 						name="password"
@@ -56,6 +57,7 @@ const Login = ({ onSubmit, onUnload, errors, inProgress }) => {
 						placeholder="Пароль"
 						value={values.password}
 						onChange={onChange}
+						isRequired
 					/>
 				</Form>
 			</FormWrapper>

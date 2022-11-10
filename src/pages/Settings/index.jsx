@@ -10,7 +10,6 @@ import Form from "components/Form"
 import { AvatarChanger } from "components/UI"
 import PropTypes from "prop-types"
 import { user } from "constants/types"
-import { Loader } from "components/UI"
 import { ROUTES } from "constants/routes"
 
 const mapStateToProps = (state) => ({
@@ -67,44 +66,43 @@ const Settings = ({ onSubmitForm, inProgress, currentUser, errors, onClickLogout
 	return (
 		<div className={style.wrapper}>
 			<FormWrapper title="Ваши настройки">
-				{values.username ? (
-					<Form button="Сохранить" onSubmit={submitFormHandler} disabled={inProgress} errors={errors}>
-						<AvatarChanger avatar={values.image} setAvatar={setAvatar} />
-						<Input
-							name="username"
-							label="Имя пользователя"
-							placeholder="Введите ваше имя"
-							value={values.username}
-							onChange={changeHandler}
-						/>
-						<Input
-							name="bio"
-							label="Информация о вас"
-							placeholder="Расскажите немного о себе"
-							type="textarea"
-							value={values.bio}
-							onChange={changeHandler}
-						/>
-						<Input
-							name="email"
-							label="E-mail"
-							type="email"
-							placeholder="Введите почту"
-							value={values.email}
-							onChange={changeHandler}
-						/>
-						<Input
-							name="password"
-							label="Новый пароль"
-							type="password"
-							placeholder="Введите ваш новый пароль"
-							value={values.password}
-							onChange={changeHandler}
-						/>
-					</Form>
-				) : (
-					<Loader />
-				)}
+				<Form button="Сохранить" onSubmit={submitFormHandler} disabled={inProgress} errors={errors}>
+					<AvatarChanger avatar={values.image} setAvatar={setAvatar} />
+					<Input
+						name="username"
+						label="Имя пользователя"
+						placeholder="Введите ваше имя"
+						value={values.username}
+						onChange={changeHandler}
+						isRequired
+					/>
+					<Input
+						name="bio"
+						label="Информация о вас"
+						placeholder="Расскажите немного о себе"
+						type="textarea"
+						value={values.bio}
+						onChange={changeHandler}
+					/>
+					<Input
+						name="email"
+						label="E-mail"
+						type="email"
+						placeholder="Введите почту"
+						value={values.email}
+						onChange={changeHandler}
+						isRequired
+					/>
+					<Input
+						name="password"
+						label="Новый пароль"
+						type="password"
+						placeholder="Введите ваш новый пароль"
+						value={values.password}
+						onChange={changeHandler}
+						isRequired
+					/>
+				</Form>
 			</FormWrapper>
 			<div className={style.logout}>
 				<Button type="delete" onClick={onClickLogout}>

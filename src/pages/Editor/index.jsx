@@ -76,7 +76,11 @@ const EditorComponent = ({
 	}
 
 	useEffect(() => {
-		onLoad(agent.Articles.get(match.params.slug))
+		if (match.params.slug) {
+			onLoad(agent.Articles.get(match.params.slug))
+		} else {
+			onLoad(null)
+		}
 		return () => {
 			onUnload()
 		}
@@ -90,7 +94,6 @@ const EditorComponent = ({
 			onLoad(null)
 		}
 	}, [match])
-
 	return (
 		<div className={style.wrapper}>
 			<FormWrapper title={window.location.pathname === ROUTES.EDITOR ? "Новая запись" : "Редактирование"}>

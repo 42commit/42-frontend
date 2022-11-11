@@ -1,5 +1,5 @@
-import ArticleList from "components/ArticleList"
-import React, { useCallback, useEffect, useMemo, useState } from "react"
+import { ArticleList, Banner } from "components"
+import React, { useEffect } from "react"
 import agent from "services/agent"
 import { connect } from "react-redux"
 import {
@@ -9,12 +9,10 @@ import {
 	PROFILE_PAGE_UNLOADED,
 	APPLY_TAG_FILTER,
 } from "constants/actionTypes"
-import { Pagination, Sidebar, TabList, TagsList } from "components/UI"
-import Banner from "components/Banner"
+import { Pagination, TabList, Loader } from "components/UI"
 import style from "./Profile.module.scss"
 import PropTypes from "prop-types"
 import { article, user } from "constants/types"
-import { Loader } from "components/UI"
 
 const mapStateToProps = (state) => ({
 	...state.articleList,
@@ -37,8 +35,7 @@ const mapDispatchToProps = (dispatch) => ({
 	onClickTag: (tag, pager, payload) => dispatch({ type: APPLY_TAG_FILTER, tag, pager, payload }),
 })
 
-const Profile = ({ onLoad, onUnload, profile, articles, articlesCount, currentPage, match, pager, onClickTag }) => {
-	const [selectedTag, setSelectedTag] = useState()
+const Profile = ({ onLoad, onUnload, profile, articles, articlesCount, currentPage, match, pager }) => {
 	useEffect(() => {
 		onLoad(
 			Promise.all([
@@ -51,31 +48,6 @@ const Profile = ({ onLoad, onUnload, profile, articles, articlesCount, currentPa
 			onUnload()
 		}
 	}, [])
-	const getUserTag = useMemo(() => {
-		if (!profile.tags) return []
-		return profile.tags.filter((t) => {
-			return articles.find((a) => a.tagList.find((at) => at === t))
-		})
-	}, [articles])
-
-	const filteredArticles = useCallback(
-		(selectedTag) => {
-			if (!articles) return []
-			if (!selectedTag) return articles
-			return articles.filter((article) => article.tagList.find((articleTag) => articleTag === selectedTag))
-		},
-		[articles],
-	)
-
-	const clickTagHandler = (tag) => {
-		if (selectedTag === tag) {
-			setSelectedTag(null)
-			onClickTag(null, pager, { articles, articlesCount })
-		} else {
-			setSelectedTag(tag)
-			onClickTag(tag, pager, { articles, articlesCount })
-		}
-	}
 
 	const tabs = [
 		{
@@ -95,18 +67,8 @@ const Profile = ({ onLoad, onUnload, profile, articles, articlesCount, currentPa
 			<div className={style.wrapper}>
 				<Banner variant="user" />
 				<div className={style.main}>
-					<div className={style.articles}>
-						<TabList tabs={tabs} tagsOff />
-						<ArticleList
-							pager={pager}
-							articles={filteredArticles(selectedTag)}
-							articlesCount={articlesCount}
-							currentPage={currentPage}
-						/>
-					</div>
-					<Sidebar>
-						<TagsList tags={getUserTag} onClickTag={clickTagHandler} />
-					</Sidebar>
+					<TabList tabs={tabs} tagsOff />
+					<ArticleList pager={pager} articles={articles} articlesCount={articlesCount} currentPage={currentPage} />
 				</div>
 				{articlesCount > 5 && <Pagination request={getPaginationRequestByAuthor(profile.username)} />}
 			</div>

@@ -1,4 +1,4 @@
-import Comment from "components/Comment"
+import { Comment } from "components"
 import React from "react"
 import style from "./CommentList.module.scss"
 import PropTypes from "prop-types"

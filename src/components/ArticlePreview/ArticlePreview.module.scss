@@ -2,7 +2,6 @@
 	display: flex;
 	gap: 16px;
 	padding: 32px 0;
-	max-width: calc(100vw - 350px);
 	border-bottom: var(--border);
 	.content__wrapper {
 		display: flex;
@@ -25,9 +24,10 @@
 			}
 			@media screen and (max-width: 768px) {
 				flex-direction: column-reverse;
-				justify-content: center;
-				align-items: center;
 				gap: 16px;
+				.link {
+					align-self: center;
+				}
 			}
 		}
 	}

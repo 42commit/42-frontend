@@ -1,15 +1,13 @@
-import CommentContainer from "../../components/Article/CommentContainer"
 import React, { useEffect } from "react"
 import agent from "services/agent"
 import { connect } from "react-redux"
 import marked from "marked"
 import { ARTICLE_PAGE_LOADED, ARTICLE_PAGE_UNLOADED } from "constants/actionTypes"
-import { TagsList, Title } from "components/UI"
-import Banner from "components/Banner"
+import { TagsList, Title, Loader } from "components/UI"
+import { Banner, CommentContainer } from "components"
 import style from "./Article.module.scss"
 import PropTypes from "prop-types"
 import { article, comment, user } from "constants/types"
-import { Loader } from "components/UI"
 
 const mapStateToProps = (state) => ({
 	...state.article,

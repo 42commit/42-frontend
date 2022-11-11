@@ -1,7 +1,7 @@
 import { Avatar } from "components/Icons/Avatar"
 import React, { useState } from "react"
-import styles from "./AvatarChanger.module.scss"
-import PropTypes from 'prop-types'
+import style from "./AvatarChanger.module.scss"
+import PropTypes from "prop-types"
 
 export const AvatarChanger = ({ avatar = "smile", setAvatar }) => {
 	const [visible, setVisible] = useState(false)
@@ -12,21 +12,22 @@ export const AvatarChanger = ({ avatar = "smile", setAvatar }) => {
 		setVisible(!visible)
 	}
 
+	const clickAvatarHandle = (item) => {
+		setAvatar(item)
+	}
+
 	return (
-		<div onClick={clickHandler} className={styles.wrapper}>
+		<div onClick={clickHandler} className={style.wrapper}>
 			<Avatar type={avatar} size="large" />
-			{visible && <ul className={styles.changer}>
-				{avatars.map((a) => {
-					const clickAvatarHandle = () => {
-						setAvatar(a)
-					}
-					return (
-						<span key={a} onClick={clickAvatarHandle}>
+			{visible && (
+				<ul className={style.changer}>
+					{avatars.map((a) => (
+						<span key={a} onClick={() => clickAvatarHandle(a)}>
 							<Avatar type={a} />
 						</span>
-					)
-				})}
-			</ul>}
+					))}
+				</ul>
+			)}
 		</div>
 	)
 }

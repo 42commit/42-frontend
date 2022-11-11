@@ -1,0 +1,10 @@
+@import "assets/style/global.scss";
+
+.wrapper {
+	@include page;
+	.taglist {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 4px;
+	}
+}

@@ -9,7 +9,7 @@
 	width: fit-content;
 	background: radial-gradient(transparent, var(--bg-secondary-color));
 	padding: 8px;
-	border-radius: 9px;
+	border-radius: var(--border-radius);
 	position: absolute;
 	z-index: 1;
 	gap: 4px;

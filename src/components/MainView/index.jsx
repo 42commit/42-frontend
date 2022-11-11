@@ -1,4 +1,4 @@
-import ArticleList from "components/UI/ArticleList"
+import ArticleList from "components/ArticleList"
 import { TabList } from "components/UI"
 import React from "react"
 import { connect } from "react-redux"
@@ -14,38 +14,28 @@ const mapStateToProps = (state) => ({
 	selectedTag: state.articleList.tag || (state.articleList.tags && state.articleList.tags[0]),
 })
 
-//eventKeys : all, feed
-
 const MainView = ({ currentUser, pager, articles, articlesCount, currentPage }) => {
-	const getTabs = () => {
-		const userTabs = [
-			{
-				title: "Ваша лента",
-				eventKey: "feed",
-			},
-			{
-				title: "Лента",
-				eventKey: "all",
-			},
-		]
-		const anonymousTabs = [
-			{
-				title: "Лента",
-				eventKey: "all",
-			},
-		]
-		return currentUser ? userTabs : anonymousTabs
-	}
+	const userTabs = [
+		{
+			title: "Ваша лента",
+			eventKey: "feed",
+		},
+		{
+			title: "Лента",
+			eventKey: "all",
+		},
+	]
+	const anonymousTabs = [
+		{
+			title: "Лента",
+			eventKey: "all",
+		},
+	]
 
 	return (
 		<div className={style.main}>
-			<TabList tabs={getTabs()} />
-			<ArticleList
-				pager={pager}
-				articles={articles}
-				articlesCount={articlesCount}
-				currentPage={currentPage}
-			/>
+			<TabList tabs={currentUser ? userTabs : anonymousTabs} />
+			<ArticleList pager={pager} articles={articles} articlesCount={articlesCount} currentPage={currentPage} />
 		</div>
 	)
 }
@@ -57,5 +47,5 @@ MainView.propTypes = {
 	articles: PropTypes.arrayOf(article),
 	currentPage: PropTypes.number,
 	articlesCount: PropTypes.number,
-	pager: PropTypes.func
+	pager: PropTypes.func,
 }

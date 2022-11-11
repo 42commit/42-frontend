@@ -4,7 +4,7 @@
 	flex-direction: column;
 	gap: 16px;
 	background-color: var(--bg-secondary-color);
-	border-radius: 20px;
+	border-radius: var(--border-radius);
 	width: 268px;
 	height: fit-content;
 	p {

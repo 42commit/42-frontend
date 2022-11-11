@@ -1,0 +1,15 @@
+@import "assets/style/global.scss";
+
+.wrapper {
+	@include page;
+	.main {
+		display: flex;
+		margin: auto;
+		gap: 32px;
+		padding: 32px 16px;
+		@include layout;
+		@media screen and (max-width: 768px) {
+			flex-direction: column-reverse;
+		}
+	}
+}

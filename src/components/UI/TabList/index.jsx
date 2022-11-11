@@ -21,5 +21,5 @@ export const TabList = connect(mapStateToProps)(TabListComponent)
 TabListComponent.propTypes = {
 	tabs: PropTypes.array.isRequired,
 	tag: PropTypes.string,
-	tagsOff: PropTypes.bool
-};
+	tagsOff: PropTypes.bool,
+}

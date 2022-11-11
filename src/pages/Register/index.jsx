@@ -59,6 +59,7 @@ const Register = ({ onSubmit, onUnload, errors, inProgress }) => {
 						placeholder="Имя пользователя"
 						value={values.username}
 						onChange={onChange}
+						isRequired
 					/>
 					<Input
 						name="email"
@@ -67,6 +68,7 @@ const Register = ({ onSubmit, onUnload, errors, inProgress }) => {
 						placeholder="E-mail"
 						value={values.email}
 						onChange={onChange}
+						isRequired
 					/>
 					<Input
 						name="password"
@@ -75,6 +77,7 @@ const Register = ({ onSubmit, onUnload, errors, inProgress }) => {
 						placeholder="Пароль"
 						value={values.password}
 						onChange={onChange}
+						isRequired
 					/>
 				</Form>
 			</FormWrapper>

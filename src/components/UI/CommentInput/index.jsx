@@ -44,7 +44,7 @@ export const CommentInput = connect(
 	return (
 		<form className={style.card} onSubmit={createComment}>
 			<div className={style.top}>
-				<Input placeholder="Написать комментарий" type="comment" value={body} onChange={bodyHandler} />
+				<Input placeholder="Написать комментарий" type="comment" value={body} onChange={bodyHandler} isRequired />
 			</div>
 			<div className={style.footer}>
 				<ArticleMeta image={profile.image} username={profile.username}>

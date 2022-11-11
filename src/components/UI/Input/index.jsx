@@ -4,7 +4,18 @@ import style from "./Input.module.scss"
 import { Text } from "../Typography/Text/"
 import { AlertIcon, CheckIcon, EyeIcon } from "components/Icons"
 
-export const Input = ({ type = "text", label = "", placeholder, success, error, value, onChange, onKeyUp, name }) => {
+export const Input = ({
+	type = "text",
+	label = "",
+	placeholder,
+	success,
+	error,
+	value,
+	onChange,
+	onKeyUp,
+	name,
+	isRequired = false,
+}) => {
 	const [isVisible, setVisible] = useState(false)
 	const clickEye = (e) => {
 		e.preventDefault()
@@ -32,6 +43,7 @@ export const Input = ({ type = "text", label = "", placeholder, success, error, 
 						id={label}
 						placeholder={placeholder}
 						rows={type === "comment" ? 4 : 5}
+						required={isRequired}
 					/>
 				) : (
 					<input
@@ -43,6 +55,7 @@ export const Input = ({ type = "text", label = "", placeholder, success, error, 
 						id={label}
 						type={type === "file" ? "text" : type === "password" ? (isVisible ? "text" : "password") : type}
 						placeholder={placeholder}
+						required={isRequired}
 					/>
 				)}
 				<div className={style.icon}>{success ? <CheckIcon /> : error ? <AlertIcon /> : ""}</div>

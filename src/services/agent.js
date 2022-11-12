@@ -36,11 +36,13 @@ const limit = (count, p) => `${API_QUERIES.LIMIT}${count}&${API_QUERIES.OFFSET}$
 const omitSlug = (article) => Object.assign({}, article, { slug: undefined })
 const Articles = {
 	all: (page) => requests.get(`${API_CONSTS.ARTICLES}?${limit(10, page)}`),
-	byAuthor: (author, page) => requests.get(`${API_CONSTS.ARTICLES}?${API_QUERIES.AUTHOR}${encode(author)}&${limit(5, page)}`),
+	byAuthor: (author, page) =>
+		requests.get(`${API_CONSTS.ARTICLES}?${API_QUERIES.AUTHOR}${encode(author)}&${limit(5, page)}`),
 	byTag: (tag, page) => requests.get(`${API_CONSTS.ARTICLES}?${API_QUERIES.TAG}${encode(tag)}&${limit(10, page)}`),
 	del: (slug) => requests.del(`${API_CONSTS.ARTICLES}/${slug}`),
 	favorite: (slug) => requests.post(`${API_CONSTS.ARTICLES}/${slug}${API_CONSTS.FAVORITE}`),
-	favoritedBy: (author, page) => requests.get(`${API_CONSTS.ARTICLES}?${API_QUERIES.FAVORITED}${encode(author)}&${limit(5, page)}`),
+	favoritedBy: (author, page) =>
+		requests.get(`${API_CONSTS.ARTICLES}?${API_QUERIES.FAVORITED}${encode(author)}&${limit(5, page)}`),
 	feed: () => requests.get(`${API_CONSTS.ARTICLES}${API_CONSTS.FEED}?${API_QUERIES.LIMIT}10&${API_QUERIES.OFFSET}0`),
 	get: (slug) => requests.get(`${API_CONSTS.ARTICLES}/${slug}`),
 	unfavorite: (slug) => requests.del(`${API_CONSTS.ARTICLES}/${slug}${API_CONSTS.FAVORITE}`),

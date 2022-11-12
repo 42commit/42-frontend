@@ -1,8 +1,6 @@
-import React from 'react'
-import style from './Loader.module.scss'
+import React from "react"
+import style from "./Loader.module.scss"
 
 export const Loader = () => {
-  return (
-    <div className={style.loader}></div>
-  )
+	return <div className={style.loader}></div>
 }

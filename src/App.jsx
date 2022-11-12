@@ -9,6 +9,7 @@ import { push } from "react-router-redux"
 import { Loader } from "./components/UI"
 import { ROUTES } from "constants/routes"
 import PropTypes from "prop-types"
+import { withProtectRoute } from "hocs/withProtectRoute"
 
 const mapStateToProps = (state) => {
 	return {
@@ -41,24 +42,25 @@ const App = ({ onLoad, appLoaded, onRedirect, redirectTo, pushRedirect }) => {
 		}
 	}, [redirectTo])
 
-	if (appLoaded)
+	if (appLoaded) {
 		return (
 			<>
 				<Header />
 				<Switch>
 					<Route exact path={ROUTES.HOME} component={Home} />
-					<Route path={ROUTES.LOGIN} component={Login} />
-					<Route path={ROUTES.REGISTER} component={Register} />
-					<Route path={ROUTES.SLUG} component={Editor} />
-					<Route path={ROUTES.EDITOR} component={Editor} />
+					<Route path={ROUTES.LOGIN} component={withProtectRoute(Login, false)} />
+					<Route path={ROUTES.REGISTER} component={withProtectRoute(Register, false)} />
+					<Route path={ROUTES.SLUG} component={withProtectRoute(Editor)} />
+					<Route path={ROUTES.EDITOR} component={withProtectRoute(Editor)} />
 					<Route path={ROUTES.ARTICLE} component={Article} />
-					<Route path={ROUTES.SETTINGS} component={Settings} />
-					<Route path={ROUTES.FAVORITES} component={ProfileFavorites} />
-					<Route path={ROUTES.PROFILE} component={Profile} />
+					<Route path={ROUTES.SETTINGS} component={withProtectRoute(Settings)} />
+					<Route path={ROUTES.FAVORITES} component={withProtectRoute(ProfileFavorites)} />
+					<Route path={ROUTES.PROFILE} component={withProtectRoute(Profile)} />
 					<Route component={NotFound} />
 				</Switch>
 			</>
 		)
+	}
 
 	return <Loader />
 }

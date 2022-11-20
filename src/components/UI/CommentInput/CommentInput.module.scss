@@ -1,0 +1,29 @@
+.card {
+	border-radius: var(--border-radius);
+	background-color: var(--input-color);
+}
+
+.top {
+	padding: 24px;
+	@media screen and (max-width: 768px) {
+		padding: 16px;
+	}
+}
+
+.footer {
+	padding: 24px;
+	background-color: var(--bg-secondary-color);
+	border-bottom-left-radius: var(--border-radius);
+	border-bottom-right-radius: var(--border-radius);
+	display: flex;
+	gap: 8px;
+	@media screen and (max-width: 768px) {
+		div:last-of-type {
+			flex-direction: column;
+			div:first-of-type {
+				align-self: flex-start;
+			}
+		}
+		padding: 16px;
+	}
+}

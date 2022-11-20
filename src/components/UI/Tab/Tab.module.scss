@@ -1,0 +1,22 @@
+.li {
+	display: flex;
+	.tab {
+		background-color: var(--bg-primary-color);
+		padding: 0 24px;
+		border: none;
+		display: flex;
+		align-items: center;
+		max-width: 30vw;
+		overflow-x: scroll;
+		cursor: pointer;
+		&::-webkit-scrollbar {
+			display: none;
+		}
+		@media screen and (max-width: 768px) {
+			text-align: center;
+		}
+	}
+	.active {
+		box-shadow: inset 0 -2px 0px var(--accent-color);
+	}
+}

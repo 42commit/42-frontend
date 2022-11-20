@@ -1,0 +1,17 @@
+.wrapper {
+	position: relative;
+	cursor: pointer;
+	margin: 0 auto;
+}
+.changer {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	width: fit-content;
+	background: radial-gradient(transparent, var(--bg-secondary-color));
+	padding: 8px;
+	border-radius: var(--border-radius);
+	position: absolute;
+	z-index: 1;
+	gap: 4px;
+	left: -10px;
+}

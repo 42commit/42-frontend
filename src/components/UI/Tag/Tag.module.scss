@@ -1,0 +1,23 @@
+.tag {
+	display: flex;
+	padding: 4px 8px;
+	border-radius: var(--border-radius);
+	cursor: pointer;
+	overflow-wrap: anywhere;
+	&:hover,
+	&:active,
+	&:visited,
+	&:link {
+		color: var(--text-primary-color);
+	}
+}
+
+.default {
+	composes: tag;
+	background-color: var(--input-color);
+}
+
+.active {
+	composes: tag;
+	background-color: var(--accent-color);
+}

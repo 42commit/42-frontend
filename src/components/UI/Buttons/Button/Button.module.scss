@@ -1,0 +1,103 @@
+.button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 8px 16px;
+	gap: 8px;
+	border-radius: var(--border-radius);
+	border: none;
+	transition-duration: 0.2s;
+	width: max-content;
+	cursor: pointer;
+
+	&:focus {
+		outline: none;
+	}
+
+	&:disabled {
+		pointer-events: none;
+	}
+}
+
+.primary {
+	composes: button;
+	background-color: var(--accent-color);
+	color: var(--text-primary-color);
+
+	&:hover {
+		background: var(--gradient-dark);
+	}
+
+	&.active {
+		background: var(--gradient-light);
+	}
+
+	&:active {
+		background: var(--gradient-light);
+	}
+
+	&:disabled {
+		background-color: var(--text-disabled-color);
+		color: var(--text-secondary-color);
+	}
+}
+
+.link {
+	composes: button;
+	padding: 0;
+
+	color: var(--accent-color);
+	background-color: transparent;
+
+	&:hover {
+		text-decoration: underline;
+	}
+
+	&:disabled {
+		color: var(--text-secondary-color);
+	}
+}
+
+.light {
+	composes: button;
+	background-color: transparent;
+	color: var(--text-secondary-color);
+
+	&.active {
+		color: var(--text-primary-color);
+	}
+
+	&:active {
+		color: var(--text-primary-color);
+	}
+
+	&:hover {
+		background-color: var(--bg-gray-color);
+		color: var(--text-primary-color);
+	}
+
+	@media only screen and (max-width: 980px) {
+		span {
+			display: none;
+		}
+	}
+}
+
+.delete {
+	composes: button;
+	background-color: transparent;
+	color: var(--text-alert-color);
+
+	&.active {
+		color: var(--text-primary-color);
+	}
+
+	&:active {
+		color: var(--text-primary-color);
+	}
+
+	&:hover {
+		background-color: var(--bg-gray-color);
+		color: var(--text-primary-color);
+	}
+}

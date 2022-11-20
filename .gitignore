@@ -297,3 +297,5 @@ sketch
 
 # Ignore code-workspaces
 *.code-workspace
+
+.vs

@@ -1,0 +1,12 @@
+@import "assets/style/global.scss";
+
+.tags__list {
+	display: flex;
+	gap: 4px;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+	@include scroll;
+	@media screen and (max-width: 768px) {
+		max-height: 250px;
+	}
+}

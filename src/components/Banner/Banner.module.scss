@@ -1,0 +1,43 @@
+@import "assets/style/global.scss";
+
+.banner {
+	padding: 32px 0 32px 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	border-bottom: var(--border);
+}
+
+.titleWrapper {
+	@include layout;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	text-align: center;
+}
+
+.userWrapper {
+	@include layout;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	gap: 16px;
+	padding: 0 16px;
+}
+
+.articleWrapper {
+	@include layout;
+	padding: 0 16px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.button {
+	align-self: flex-end;
+	@media screen and (max-width: 768px) {
+		align-self: center;
+	}
+}

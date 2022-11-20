@@ -1,0 +1,28 @@
+@import "assets/style/global.scss";
+
+.wrapper {
+	@include page;
+	.main {
+		@include layout;
+		margin: auto;
+		padding: 0 16px;
+		overflow-wrap: break-word;
+		.text {
+			margin-bottom: 32px;
+			color: var(--text-primary-color);
+			line-height: normal;
+			p {
+				padding: 32px 0;
+				line-height: 24px;
+			}
+			ul {
+				padding-left: 16px;
+			}
+			blockquote {
+				padding: 0 32px;
+				border-radius: var(--border-radius);
+				background-color: var(--bg-secondary-color);
+			}
+		}
+	}
+}

@@ -1,0 +1,10 @@
+@import "assets/style/global.scss";
+
+.wrapper {
+	@include page;
+	.main {
+		@include layout;
+		margin: auto;
+		padding: 32px 16px;
+	}
+}

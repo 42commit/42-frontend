@@ -1,0 +1,75 @@
+:root {
+	--input-color: #2f2f37;
+	--accent-color: #4c4cff;
+	--divider-color: #2f2f37;
+	--gradient: linear-gradient(63.18deg, #801ab3 0%, #4c4cff 100%);
+	--text-secondary-color: #8585ad;
+	--text-primary-color: #f2f2f3;
+	--text-alert-color: #f20d33;
+	--text-success-color: #00cccc;
+	--text-disabled-color: #3a3a55;
+	--bg-primary-color: #131316;
+	--bg-secondary-color: #1c1c21;
+	--bg-grey-color: #f4f5f6;
+
+	--gradient-light: linear-gradient(0deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), #4c4cff;
+	--gradient-dark: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #4c4cff;
+	--shadow: 0px 0px 16px rgba(51, 51, 255, 0.25), 0px 0px 8px rgba(51, 51, 255, 0.25),
+		0px 4px 32px rgba(51, 51, 255, 0.5);
+
+	--layout-width: 1140px;
+	--border-radius: 20px;
+
+	--font-header: "Exo 2";
+	--font-text: "JetBrains Mono";
+
+	--border: 1px solid var(--divider-color);
+}
+
+@mixin scroll {
+	overflow-y: auto;
+	&::-webkit-scrollbar {
+		width: 8px;
+		@media screen and (max-width: 768px) {
+			display: none;
+		}
+	}
+	&::-webkit-scrollbar-track {
+		background: var(--divider-color);
+	}
+	&::-webkit-scrollbar-thumb {
+		background-color: var(--text-secondary-color);
+	}
+}
+
+@mixin page {
+	@include scroll;
+	max-height: calc(100vh - 60px);
+}
+
+@mixin layout {
+	width: var(--layout-width);
+	max-width: 100%;
+}
+
+* {
+	font-family: var(--font-text);
+	font-size: 16px;
+}
+
+body {
+	background-color: var(--bg-primary-color);
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}

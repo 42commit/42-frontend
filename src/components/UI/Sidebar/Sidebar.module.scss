@@ -1,0 +1,17 @@
+.sidebar {
+	padding: 16px;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	background-color: var(--bg-secondary-color);
+	border-radius: var(--border-radius);
+	width: 268px;
+	height: fit-content;
+	p {
+		color: var(--text-primary-color);
+		margin: 0;
+	}
+	@media screen and (max-width: 768px) {
+		width: 100%;
+	}
+}

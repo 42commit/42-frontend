@@ -58,11 +58,12 @@ This is a blog where you can:
    ```sh
    git clone https://github.com/42commit/42-frontend.git
    ```
-3. Install NPM packages
+3. Make sure that file `agent.js` has correct port for the backend in `API_ROOT` const
+4. Install NPM packages
    ```sh
    npm install
    ```
-4. Run the project
+5. Run the project
    ```js
    npm start
    ```

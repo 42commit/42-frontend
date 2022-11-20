@@ -4,7 +4,7 @@ import { API_CONSTS, API_QUERIES } from "constants/apiConsts"
 
 const superagent = superagentPromise(_superagent, Promise)
 
-const API_ROOT = "http://194.67.67.50:3000/api"
+const API_ROOT = "http://localhost:3000/api"
 
 const encode = encodeURIComponent
 const responseBody = (res) => res.body

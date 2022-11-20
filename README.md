@@ -1,14 +1,12 @@
 <!-- PROJECT LOGO -->
 <br />
-<div align="center">
+<div align="center" id="readme-top">
   <h1 align="center">Project Kitchen</h1>
 
   <p align="center">
     A place where new experiences are prepared!
     <br />
     <br />
-    <a href="https://github.com/42commit/42-frontend">View Demo</a>
-    ·
     <a href="https://github.com/42commit/42-frontend/issues">Report Bug</a>
     ·
     <a href="https://github.com/42commit/42-frontend/issues">Request Feature</a>
@@ -34,11 +32,12 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Project Kitchen][product-screenshot]](https://example.com)
+
+![Project Kitchen](https://user-images.githubusercontent.com/74764322/202925932-d1380357-a42e-40bf-9731-19ac2ce560c5.png)
 
 This is a blog where you can:
 * Sign up/sign in
-* Edit your info
+* Edit profile info
 * Create/edit/delete/like posts
 * Create/delete/like comments
 * Follow another user
@@ -54,15 +53,16 @@ This is a blog where you can:
 <!-- GETTING STARTED -->
 ## Getting Started
 
-1. Clone the repo
+1. Install [backend](https://github.com/42commit/42-backend)
+2. Clone the repo
    ```sh
    git clone https://github.com/42commit/42-frontend.git
    ```
-2. Install NPM packages
+3. Install NPM packages
    ```sh
    npm install
    ```
-3. Run the project
+4. Run the project
    ```js
    npm start
    ```
@@ -113,7 +113,6 @@ Project Link: [https://github.com/42commit/42-frontend](https://github.com/42com
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[product-screenshot]: https://user-images.githubusercontent.com/80598450/201369862-4db17e5f-18f7-49ca-a892-1671ac458997.png
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [Redux]: https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white
 [react-router]: https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white
